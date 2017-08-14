@@ -21,4 +21,4 @@ ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80", "--ReadStaticMappings", "
 
 # Just some info:
 # build with : docker build -t wiremock-net.nano -f Dockerfile.nano .
-# run with   : docker run --rm -i -p 9090:80 wiremock-net.nano
+# run with   : docker run --rm -i -p 9090:80 wiremock-net.nano --AdminUsername a --AdminPassword b

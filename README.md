@@ -3,7 +3,7 @@ WireMock.Net-docker is a Docker image which runs [WireMock-Net](https://github.c
 
 ## Supported tags & respective Dockerfile links :
 
-- `1,0,0`, `latest` [(1.0/Dockerfile)](https://github.com/https://github.com/WireMock-Net/WireMock.Net-docker/blob/1.0.0/Dockerfile)
+- `1.0.0`, `latest` [(1.0/Dockerfile)](https://github.com/https://github.com/WireMock-Net/WireMock.Net-docker/blob/1.0.0/Dockerfile)
 - `1.0.0` [(1.0/Dockerfile)](https://github.com/https://github.com/WireMock-Net/WireMock.Net-docker/blob/1.0.0/Dockerfile)
 
 ## The image includes
@@ -29,9 +29,3 @@ docker run -it --rm -p 9090:80 sheyenrath/wiremock-net
 > Access [http://localhost:9090/__admin/settings](http://localhost:9090/__admin/mappings) to display the mappings.
 
 For more commands see [WIKI](https://github.com/WireMock-Net/WireMock.Net/wiki)
-
-##### Start a WireMock.Net container with arguments
-
-```sh
-docker run -it --rm -p 9090:80 sheyenrath/wiremock
-```
