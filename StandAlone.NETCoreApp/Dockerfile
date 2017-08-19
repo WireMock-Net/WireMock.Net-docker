@@ -20,5 +20,5 @@ EXPOSE 80
 ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80", "--ReadStaticMappings", "false"]
 
 # Just some info:
-# build with : docker build -t wiremock-net .
-# run with   : docker run --rm -p 9090:80 wiremock-net
+# build with : docker build -t wiremock.net .
+# run with   : docker run --rm -p 9090:80 wiremock.net

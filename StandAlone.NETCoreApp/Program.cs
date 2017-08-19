@@ -6,7 +6,7 @@ namespace WireMock.Net.StandAlone.NETCoreApp
 {
     class Program
     {
-        private static int sleep = 30000;
+        private static int sleepTime = 30000;
         private static FluentMockServer server;
 
         static void Main(string[] args)
@@ -28,7 +28,7 @@ namespace WireMock.Net.StandAlone.NETCoreApp
             while(true)
             {
                 Console.WriteLine($"{DateTime.UtcNow} WireMock.Net server running");
-                Thread.Sleep(sleep);
+                Thread.Sleep(sleepTime);
             }
         }
 
