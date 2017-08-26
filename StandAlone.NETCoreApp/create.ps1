@@ -16,4 +16,7 @@ docker rmi $(docker images -f "dangling=true" -q)
 # pash with :
 # docker push sheyenrath/wiremock.net:1.0.0-preview-1
 
-# run with  : docker run --rm -p 9091:80 sheyenrath/wiremock.net
+# run with :
+# docker run --rm -p 9091:80 sheyenrath/wiremock.net
+# or
+# docker run --rm -p 9091:80 sheyenrath/wiremock.net --ReadStaticMappings false --AdminUsername a --AdminPassword b --MaxRequestLogCount 99 --RequestLogExpirationDuration 24
