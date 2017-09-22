@@ -1,6 +1,6 @@
 FROM microsoft/dotnet:2.0-sdk AS build-env
 
-MAINTAINER Stef Heyenrath
+LABEL maintainer="Stef Heyenrath"
 
 WORKDIR /app
 
@@ -15,8 +15,8 @@ RUN dotnet build src/WireMock.Net.StandAlone/WireMock.Net.StandAlone.csproj -f n
 RUN dotnet publish src/StandAlone.NETCoreApp/StandAlone.NETCoreApp.latest.csproj -c Release -r win-x64 -o out
 
 # build runtime image
-FROM microsoft/nanoserver:10.0.14393.1593
+FROM microsoft/nanoserver:10.0.14393.1715
 WORKDIR /app
 COPY --from=build-env /app/src/StandAlone.NETCoreApp/out ./
 EXPOSE 80
-ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80", "--ReadStaticMappings", "false"]
+ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80"]

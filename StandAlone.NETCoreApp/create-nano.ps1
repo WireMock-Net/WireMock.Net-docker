@@ -19,4 +19,4 @@ docker rmi $(docker images -f "dangling=true" -q)
 # run with:
 # docker run --rm -p 9091:80 sheyenrath/wiremock.net-nano
 # or
-# docker run --rm -p 9091:80 sheyenrath/wiremock.net-nano --ReadStaticMappings false --AdminUsername a --AdminPassword b --MaxRequestLogCount 99 --RequestLogExpirationDuration 24
+# docker run --rm -p 9091:80 sheyenrath/wiremock.net-nano --ReadStaticMappings true --AdminUsername a --AdminPassword b --MaxRequestLogCount 99 --RequestLogExpirationDuration 24
