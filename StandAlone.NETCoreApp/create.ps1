@@ -13,7 +13,7 @@ docker rmi $(docker images -f "dangling=true" -q)
 # tag with:
 # docker tag sheyenrath/wiremock.net:latest sheyenrath/wiremock.net:1.0.0-preview-1
 
-# pash with :
+# push with :
 # docker push sheyenrath/wiremock.net:1.0.0-preview-1
 
 # run with :

@@ -1,3 +1,4 @@
+# The image (microsoft/dotnet:2.0-sdk) which builds the code
 FROM microsoft/dotnet:2.0-sdk AS build-env
 
 LABEL maintainer="Stef Heyenrath"
@@ -14,7 +15,7 @@ RUN dotnet build src/WireMock.Net/WireMock.Net.csproj -f netstandard2.0 -c Relea
 RUN dotnet build src/WireMock.Net.StandAlone/WireMock.Net.StandAlone.csproj -f netstandard2.0 -c Release -r linux-x64
 RUN dotnet publish src/StandAlone.NETCoreApp/StandAlone.NETCoreApp.latest.csproj -c Release -r linux-x64 -o out
 
-# build runtime image
+# The image (microsoft/dotnet:2.0-runtime-deps) to create a runtime image
 FROM microsoft/dotnet:2.0-runtime-deps
 WORKDIR /app
 COPY --from=build-env /app/src/StandAlone.NETCoreApp/out ./
