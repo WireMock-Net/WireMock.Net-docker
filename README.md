@@ -1,25 +1,37 @@
 # WireMock.Net-docker
 WireMock.Net-docker is a Docker image which runs [WireMock.Net](https://github.com/WireMock-Net) (a flexible library for stubbing and mocking web HTTP responses using request-matching criteria.)
 
-## The image includes
+[![Gitter](https://img.shields.io/gitter/room/wiremock_dotnet/Lobby.svg)](https://gitter.im/wiremock_dotnet/Lobby)
 
-- `EXPOSE 80` : The wiremock http server port
+## Linux
 
-## How to use this image
-
-#### Getting started
-
-##### Pull latest image (Linux container)
+### Pull latest image
 
 ```sh
 docker pull sheyenrath/wiremock.net
 ```
 
-##### Start a WireMock.Net container (Linux container)
+### Start the WireMock.Net container
 
 ```sh
 docker run -it --rm -p 9091:80 sheyenrath/wiremock.net
 ```
+
+## Windows Nano
+
+### Pull latest image
+
+```sh
+docker pull sheyenrath/wiremock.net-nano
+```
+
+### Start the WireMock.Net container
+
+```sh
+docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nano
+```
+
+## Using
 
 > Access [http://localhost:9091/__admin/settings](http://localhost:9091/__admin/mappings) to display the mappings.
 

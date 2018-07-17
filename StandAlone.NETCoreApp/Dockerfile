@@ -5,11 +5,11 @@ LABEL maintainer="Stef Heyenrath"
 WORKDIR /app
 
 # copy csproj and restore as distinct layers
-COPY *.csproj ./
+COPY StandAlone.NETCoreApp.csproj ./
 RUN dotnet restore
 
 # copy everything else and build
-COPY . ./
+COPY *.cs ./
 RUN dotnet publish -c Release -r linux-x64 -o out
 
 # build runtime image

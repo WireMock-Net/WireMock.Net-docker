@@ -11,10 +11,10 @@ docker build -t sheyenrath/wiremock.net  -f .\Dockerfile.latest .
 docker rmi $(docker images -f "dangling=true" -q)
 
 # tag with:
-# docker tag sheyenrath/wiremock.net:latest sheyenrath/wiremock.net:1.0.0-preview-1
+# docker tag sheyenrath/wiremock.net:latest sheyenrath/wiremock.net:1.0.4.5
 
 # push with :
-# docker push sheyenrath/wiremock.net:1.0.0-preview-1
+# docker push sheyenrath/wiremock.net:1.0.4.5
 
 # run with :
 # docker run --rm -p 9091:80 sheyenrath/wiremock.net
