@@ -11,10 +11,10 @@ docker build -t sheyenrath/wiremock.net-nano  -f .\Dockerfile.latest.nano .
 docker rmi $(docker images -f "dangling=true" -q)
 
 # tag with:
-# docker tag sheyenrath/wiremock.net-nano:latest sheyenrath/wiremock.net-nano:1.0.4.5
+# docker tag sheyenrath/wiremock.net-nano:latest sheyenrath/wiremock.net-nano:1.0.4.13
 
 # push with:
-# docker push sheyenrath/wiremock.net-nano:1.0.4.5
+# docker push sheyenrath/wiremock.net-nano:1.0.4.13
 
 # run with:
 # docker run --rm -p 9091:80 sheyenrath/wiremock.net-nano
