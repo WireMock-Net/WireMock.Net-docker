@@ -5,14 +5,20 @@
 docker build -t sheyenrath/wiremock.net-nano  -f .\Dockerfile.nano .
 ```
 
-### 2. Tag
+### 2. Delete dangling images
 ```
-docker tag sheyenrath/wiremock.net-nano:latest sheyenrath/wiremock.net-nano:1.0.4.13
+docker rmi $(docker images -f "dangling=true" -q)
 ```
 
-### 3. Push
+### 3. Tag
 ```
-docker push sheyenrath/wiremock.net-nano:1.0.4.13
+docker tag sheyenrath/wiremock.net-nano:latest sheyenrath/wiremock.net-nano:1.0.4.18
+```
+
+### 4. Push
+```
+docker push sheyenrath/wiremock.net-nano:latest
+docker push sheyenrath/wiremock.net-nano:1.0.4.18
 ```
 
 
@@ -23,12 +29,18 @@ docker push sheyenrath/wiremock.net-nano:1.0.4.13
 docker build -t sheyenrath/wiremock.net -f .\Dockerfile .
 ```
 
-### 2. Tag
+### 2. Delete dangling images
 ```
-docker tag sheyenrath/wiremock.net:latest sheyenrath/wiremock.net:1.0.4.13
+docker rmi $(docker images -f "dangling=true" -q)
 ```
 
-### 3. Push
+### 3. Tag
 ```
-docker push sheyenrath/wiremock.net:1.0.4.13
+docker tag sheyenrath/wiremock.net:latest sheyenrath/wiremock.net:1.0.4.18
+```
+
+### 4. Push
+```
+docker push sheyenrath/wiremock.net:latest
+docker push sheyenrath/wiremock.net:1.0.4.18
 ```
