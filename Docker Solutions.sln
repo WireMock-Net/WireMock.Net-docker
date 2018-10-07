@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandAlone.NETCoreApp", "StandAlone.NETCoreApp\StandAlone.NETCoreApp.csproj", "{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet-web-example", "dotnet-web-example\dotnet-web-example.csproj", "{85F83B63-7FFE-4035-BFCC-54EFF774C608}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85F83B63-7FFE-4035-BFCC-54EFF774C608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85F83B63-7FFE-4035-BFCC-54EFF774C608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85F83B63-7FFE-4035-BFCC-54EFF774C608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85F83B63-7FFE-4035-BFCC-54EFF774C608}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFD20BD3-6DD3-4AC5-AAFE-E33F89A4653A}
+	EndGlobalSection
+EndGlobal
