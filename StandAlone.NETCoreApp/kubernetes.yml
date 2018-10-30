@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wiremock-net
@@ -11,7 +11,10 @@ spec:
     spec:
       containers:
       - name: wiremock-net
-        image: index.docker.io/sheyenrath/wiremock.net:1.0.4.5
+        image: index.docker.io/sheyenrath/wiremock.net:1.0.4.13
+        env:
+        - name: WIREMOCK_NET_VAR1
+          value: "Value 1"
         ports:
         - containerPort: 80
 ---

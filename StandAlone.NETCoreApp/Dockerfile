@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0-sdk AS build-env
+FROM microsoft/dotnet:2.1-sdk AS build-env
 
 LABEL maintainer="Stef Heyenrath"
 
@@ -13,7 +13,7 @@ COPY *.cs ./
 RUN dotnet publish -c Release -r linux-x64 -o out
 
 # build runtime image
-FROM microsoft/dotnet:2.0-runtime-deps
+FROM microsoft/dotnet:2.1-runtime-deps
 WORKDIR /app
 COPY --from=build-env /app/out ./
 EXPOSE 80

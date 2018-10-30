@@ -31,8 +31,11 @@ docker pull sheyenrath/wiremock.net-nano
 docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nano
 ```
 
+## Commands
+For all possible commands, see this [WIKI - Commandlin Arguments](https://github.com/WireMock-Net/WireMock.Net-docker/wiki/Commandline-arguments)
+
 ## Using
 
 > Access [http://localhost:9091/__admin/settings](http://localhost:9091/__admin/mappings) to display the mappings.
 
-For more commands see [WIKI](https://github.com/WireMock-Net/WireMock.Net/wiki)
+For more functionality, see [WIKI](https://github.com/WireMock-Net/WireMock.Net/wiki)

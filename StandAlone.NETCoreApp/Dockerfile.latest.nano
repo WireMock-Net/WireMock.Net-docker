@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0-sdk AS build-env
+FROM microsoft/dotnet:2.1-sdk AS build-env
 
 LABEL maintainer="Stef Heyenrath"
 
@@ -15,7 +15,7 @@ RUN dotnet build src/WireMock.Net.StandAlone/WireMock.Net.StandAlone.csproj -f n
 RUN dotnet publish src/StandAlone.NETCoreApp/StandAlone.NETCoreApp.latest.csproj -c Release -r win-x64 -o out
 
 # build runtime image
-FROM microsoft/nanoserver:10.0.14393.2363
+FROM microsoft/nanoserver:10.0.14393.2485
 WORKDIR /app
 COPY --from=build-env /app/src/StandAlone.NETCoreApp/out ./
 EXPOSE 80
