@@ -1,3 +1,6 @@
+# 1.0.4.19 (31 October 2018)
+- [#6](https://github.com/WireMock-Net/WireMock.Net-docker/pull/6) - 1.0.4.19 contributed by [StefH](https://github.com/StefH)
+
 # 1.0.4.18 (30 October 2018)
 - [#5](https://github.com/WireMock-Net/WireMock.Net-docker/pull/5) - NetCoreApp 2.1 and 1.0.4.18 contributed by [StefH](https://github.com/StefH)
 - [#3](https://github.com/WireMock-Net/WireMock.Net-docker/issues/3) - Change: Disable partial match by default for StandAlone application.
