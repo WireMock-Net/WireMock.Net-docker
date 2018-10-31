@@ -12,19 +12,6 @@ namespace WireMock.Net.StandAlone.NETCoreApp
 
         static void Main(string[] args)
         {
-            for (int i = 0; i < args.Length ; i++)
-            {
-                Console.WriteLine($"{i} [{args[i]}]");
-            }
-
-            Console.WriteLine("----------");
-            args = args.SelectMany(a => a.Split(' ')).ToArray();
-
-            for (int i = 0; i < args.Length ; i++)
-            {
-                Console.WriteLine($"{i} [{args[i]}]");
-            }
-
             server = StandAloneApp.Start(args);
 
             Console.WriteLine($"{DateTime.UtcNow} Press Ctrl+C to shut down");
