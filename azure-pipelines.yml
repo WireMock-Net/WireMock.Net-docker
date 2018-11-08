@@ -24,7 +24,7 @@ steps:
 # Build Docker Image
 - script: |
     docker build -t $(DOCKER_ID)/$(imageName) -f Dockerfile.nano  ./StandAlone.NETCoreApp.csproj
-    displayName: Build Docker image
+  displayName: Build Docker image
 
 #
     #docker login -u $(DOCKER_ID) -p $pswd
