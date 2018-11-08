@@ -1,9 +1,20 @@
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'vs2017-win2016'
 
 variables:
-  buildConfiguration: 'Release'
+  Prerelease: 'ci'
+  buildId: "1$(Build.BuildId)"
+  buildProjects: '**/StandAlone.NETCoreApp.csproj'
 
-#steps:
-#- script: dotnet build --configuration $(buildConfiguration)
-  #displayName: 'dotnet build $(buildConfiguration)'
+steps:
+# Print buildId
+- script: |
+    echo "BuildId = $(buildId)"
+  displayName: 'Print buildId'
+
+- task: DotNetCoreCLI@2
+  displayName: Build Release
+  inputs:
+    command: 'build'
+    arguments: /p:Configuration=Release
+    projects: $(buildProjects)
