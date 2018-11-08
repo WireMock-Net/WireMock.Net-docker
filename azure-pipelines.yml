@@ -26,6 +26,12 @@ steps:
     docker build -t $(DOCKER_ID)/$(imageName) -f ./StandAlone.NETCoreApp/Dockerfile.nano ./StandAlone.NETCoreApp
   displayName: Build Docker image
 
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifacts
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest')) # Do not run for PullRequests
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+
 #
     #docker login -u $(DOCKER_ID) -p $pswd
     #docker push $(dockerId)/$(imageName)
