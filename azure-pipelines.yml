@@ -23,7 +23,7 @@ steps:
 
 # Build Docker Image
 - script: |
-    docker build -t $(DOCKER_ID)/$(imageName) -f Dockerfile.nano  ./StandAlone.NETCoreApp.csproj
+    docker build -t $(DOCKER_ID)/$(imageName) -f Dockerfile.nano  ./StandAlone.NETCoreApp
   displayName: Build Docker image
 
 #
