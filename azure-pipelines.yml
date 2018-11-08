@@ -2,7 +2,8 @@ pool:
   vmImage: 'vs2017-win2016'
 
 variables:
-  Prerelease: 'ci'
+  buildConfiguration: 'Release'
+  imageName: 'wiremock.net-nano'
   buildId: "1$(Build.BuildId)"
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
 
@@ -12,9 +13,22 @@ steps:
     echo "BuildId = $(buildId)"
   displayName: 'Print buildId'
 
+# Build StandAlone.NETCoreApp
 - task: DotNetCoreCLI@2
-  displayName: Build Release
+  displayName: Build StandAlone.NETCoreApp
   inputs:
     command: 'build'
-    arguments: /p:Configuration=Release
+    arguments: /p:Configuration=$(buildConfiguration)
     projects: $(buildProjects)
+
+# Build Docker Image
+steps:
+- script: |
+    docker build -t $(DOCKER_ID)/$(imageName) -f Dockerfile.nano  ./StandAlone.NETCoreApp.csproj
+    displayName: Build Docker image
+
+#
+    #docker login -u $(DOCKER_ID) -p $pswd
+    #docker push $(dockerId)/$(imageName)
+  #env:
+   # pswd: $(dockerPassword)
