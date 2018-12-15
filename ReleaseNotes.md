@@ -1,3 +1,6 @@
+# 1.0.6 (15 December 2018)
+- [#9](https://github.com/WireMock-Net/WireMock.Net-docker/pull/9) - 1.0.6 contributed by [StefH](https://github.com/StefH)
+
 # 1.0.4.19 (31 October 2018)
 - [#6](https://github.com/WireMock-Net/WireMock.Net-docker/pull/6) - 1.0.4.19 contributed by [StefH](https://github.com/StefH)
 
