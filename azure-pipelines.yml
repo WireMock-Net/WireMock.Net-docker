@@ -19,14 +19,14 @@ steps:
 
 # Docker
 - script: docker build -t $(DOCKER_ID)/$(imageName) -f ./StandAlone.NETCoreApp/Dockerfile.nano ./StandAlone.NETCoreApp
-  displayName: 'Build Docker image [$(imageName)]'
+  displayName: 'Build Docker image [$(imageName):latest]'
 
 - script: docker tag $(DOCKER_ID)/$(imageName):latest $(DOCKER_ID)/$(imageName):$(tag)
   displayName: 'Tag Docker image [$(imageName):$(tag)]'
 
 # Docker login : https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
 - script: |
-    echo $(DOCKER_PWD) | docker login -u $(DOCKER_ID) --password-stdin
-    docker push $(DOCKER_ID))/$(imageName):latest
-    docker push $(DOCKER_ID))/$(imageName):$(tag)
+    echo "$(DOCKER_PWD)" | docker login -u $(DOCKER_ID) --password-stdin
+    docker push $(DOCKER_ID)/$(imageName):latest
+    docker push $(DOCKER_ID)/$(imageName):$(tag)
   displayName: 'Push Docker images [$(imageName):latest and $(imageName):$(tag)]'
