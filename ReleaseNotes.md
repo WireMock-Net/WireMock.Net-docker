@@ -1,3 +1,8 @@
+# 1.0.6.1 (12 January 2019)
+- [#7](https://github.com/WireMock-Net/WireMock.Net-docker/pull/7) - Set up CI with Azure Pipelines contributed by [azure-pipelines[bot]](https://github.com/apps/azure-pipelines)
+- [#2](https://github.com/WireMock-Net/WireMock.Net-docker/issues/2) - Feature: Add azure-pipelines to build docker image [feature]
+- [#8](https://github.com/WireMock-Net/WireMock.Net-docker/issues/8) - Dockerized WireMock.Net does not honor mapping after posting to server [question]
+
 # 1.0.6 (15 December 2018)
 - [#9](https://github.com/WireMock-Net/WireMock.Net-docker/pull/9) - 1.0.6 contributed by [StefH](https://github.com/StefH)
 
