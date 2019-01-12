@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandAlone.NETCoreApp", "St
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AC62511-0096-4DE2-A53D-A899F8F5FD4A}"
 	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.nano.yml = azure-pipelines.nano.yml
 		azure-pipelines.yml = azure-pipelines.yml
 		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
 		README.md = README.md
