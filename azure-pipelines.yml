@@ -24,9 +24,10 @@ steps:
 - script: docker tag $(DOCKER_ID)/$(imageName):latest $(DOCKER_ID)/$(imageName):$(tag)
   displayName: 'Tag Docker image [$(imageName):$(tag)]'
 
-# Docker login : https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
+# https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
+# https://github.com/Microsoft/azure-pipelines-tasks/issues/6480#issuecomment-453765536
 - script: |
-    echo "$(DOCKER_PWD)" | docker login -u $(DOCKER_ID) --password-stdin
+    echo | set /p="$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
     docker push $(DOCKER_ID)/$(imageName):latest
     docker push $(DOCKER_ID)/$(imageName):$(tag)
   displayName: 'Push Docker images [$(imageName):latest and $(imageName):$(tag)]'
