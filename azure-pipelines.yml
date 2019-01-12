@@ -4,15 +4,11 @@ pool:
 variables:
   buildConfiguration: 'Release'
   imageName: 'wiremock.net-nano'
-  buildId: '1$(Build.BuildId)'
+  imageNameLinux: 'wiremock.net'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
   tag: '1.0.6.1'
 
 steps:
-# Print buildId
-- script: echo 'BuildId = $(buildId)''
-  displayName: 'Print buildId'
-
 # Build StandAlone.NETCoreApp
 - task: DotNetCoreCLI@2
   displayName: Build StandAlone.NETCoreApp
@@ -23,13 +19,14 @@ steps:
 
 # Docker
 - script: docker build -t $(DOCKER_ID)/$(imageName) -f ./StandAlone.NETCoreApp/Dockerfile.nano ./StandAlone.NETCoreApp
-  displayName: 'Build Docker image'
+  displayName: 'Build Docker image [$(imageName)]'
 
 - script: docker tag $(DOCKER_ID)/$(imageName):latest $(DOCKER_ID)/$(imageName):$(tag)
-  displayName: 'Tag Docker image [$(tag)]'
+  displayName: 'Tag Docker image [$(imageName):$(tag)]'
 
+# Docker login : https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
 - script: |
-    docker login -u $(DOCKER_ID) -p $(DOCKER_PWD)
+    echo $(DOCKER_PWD) | docker login -u $(DOCKER_ID) --password-stdin
     docker push $(DOCKER_ID))/$(imageName):latest
     docker push $(DOCKER_ID))/$(imageName):$(tag)
-  displayName: 'Push Docker images [latest and $(tag)]'
+  displayName: 'Push Docker images [$(imageName):latest and $(imageName):$(tag)]'
