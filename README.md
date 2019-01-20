@@ -31,6 +31,20 @@ docker pull sheyenrath/wiremock.net-nano
 docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nano
 ```
 
+## Windows NanoServer 1803
+
+### Pull latest image
+
+```sh
+docker pull sheyenrath/wiremock.net-nanoserver-1803
+```
+
+### Start the WireMock.Net container
+
+```sh
+docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nanoserver-1803
+```
+
 ## Commands
 For all possible commands, see this [WIKI - Commandlin Arguments](https://github.com/WireMock-Net/WireMock.Net-docker/wiki/Commandline-arguments)
 
