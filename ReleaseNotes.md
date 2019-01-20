@@ -1,3 +1,8 @@
+# 1.0.7 (20 January 2019)
+- [#12](https://github.com/WireMock-Net/WireMock.Net-docker/pull/12) - Docker version 1.0.7 [feature] contributed by [StefH](https://github.com/StefH)
+- [#13](https://github.com/WireMock-Net/WireMock.Net-docker/pull/13) - NanoServer 1803 [feature] contributed by [StefH](https://github.com/StefH)
+- [#11](https://github.com/WireMock-Net/WireMock.Net-docker/issues/11) - Create Nano-1803 image
+
 # 1.0.6.1 (12 January 2019)
 - [#7](https://github.com/WireMock-Net/WireMock.Net-docker/pull/7) - Set up CI with Azure Pipelines contributed by [azure-pipelines[bot]](https://github.com/apps/azure-pipelines)
 - [#2](https://github.com/WireMock-Net/WireMock.Net-docker/issues/2) - Feature: Add azure-pipelines to build docker image [feature]
