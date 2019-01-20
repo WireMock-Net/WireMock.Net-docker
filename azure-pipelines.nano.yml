@@ -1,8 +1,6 @@
 pool:
   vmImage: 'win1803'
 
-#vmImage: 'vs2017-win2016'
-
 variables:
   buildConfiguration: 'Release'
   imageName: 'wiremock.net-nano'
@@ -32,10 +30,15 @@ steps:
 - script: docker tag $(DOCKER_ID)/$(imageName1803):latest $(DOCKER_ID)/$(imageName1803):$(tag)
   displayName: 'Tag Docker image [$(imageName1803):$(tag)]'
 
+
+# for vs2017-win2016 only !
 # https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
 # https://github.com/Microsoft/azure-pipelines-tasks/issues/6480#issuecomment-453765536
+# echo | set /p="$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
+
+# For win1803 ; just use --password
 - script: |
-    echo | set /p="$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
+    docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
     docker push $(DOCKER_ID)/$(imageName):latest
     docker push $(DOCKER_ID)/$(imageName):$(tag)
     docker push $(DOCKER_ID)/$(imageName1803):latest
