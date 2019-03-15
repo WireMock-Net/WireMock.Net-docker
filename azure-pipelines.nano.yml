@@ -34,4 +34,4 @@ steps:
     docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
     docker push $(DOCKER_ID)/$(imageName1803):latest
     docker push $(DOCKER_ID)/$(imageName1803):$(tag)
-  displayName: 'Push Docker images [$(imageName)(latest,$(tag)) + $(imageName1803)(latest,$(tag))]'
+  displayName: 'Push Docker image [$(imageName1803)(latest,$(tag)]'
