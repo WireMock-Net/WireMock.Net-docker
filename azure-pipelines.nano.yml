@@ -3,7 +3,6 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  imageName: 'wiremock.net-nano'
   imageName1803: 'wiremock.net-nanoserver-1803'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
   tag: '1.0.8'
@@ -18,12 +17,6 @@ steps:
     projects: $(buildProjects)
 
 # Docker
-- script: docker build -t $(DOCKER_ID)/$(imageName) -f ./StandAlone.NETCoreApp/Dockerfile.nano ./StandAlone.NETCoreApp
-  displayName: 'Build Docker image [$(imageName):latest]'
-
-- script: docker tag $(DOCKER_ID)/$(imageName):latest $(DOCKER_ID)/$(imageName):$(tag)
-  displayName: 'Tag Docker image [$(imageName):$(tag)]'
-
 - script: docker build -t $(DOCKER_ID)/$(imageName1803) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-1803 ./StandAlone.NETCoreApp
   displayName: 'Build Docker image [$(imageName1803):latest]'
 
@@ -39,8 +32,6 @@ steps:
 # For win1803 ; just use --password
 - script: |
     docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
-    docker push $(DOCKER_ID)/$(imageName):latest
-    docker push $(DOCKER_ID)/$(imageName):$(tag)
     docker push $(DOCKER_ID)/$(imageName1803):latest
     docker push $(DOCKER_ID)/$(imageName1803):$(tag)
   displayName: 'Push Docker images [$(imageName)(latest,$(tag)) + $(imageName1803)(latest,$(tag))]'

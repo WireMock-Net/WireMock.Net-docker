@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.1-sdk-nanoserver-1803 AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
 
 LABEL maintainer="Stef Heyenrath"
 
@@ -13,7 +13,7 @@ COPY *.cs ./
 RUN dotnet publish -c Release -o out
 
 # build runtime image
-FROM microsoft/dotnet:2.1-aspnetcore-runtime-nanoserver-1803
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-nanoserver-1803
 WORKDIR /app
 COPY --from=build-env /app/out ./
 EXPOSE 80
