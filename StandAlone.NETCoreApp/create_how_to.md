@@ -5,7 +5,8 @@
 ### 1. Build
 
 ``` cmd
-docker build -t sheyenrath/wiremock.net-nano  -f .\Dockerfile.nano .
+docker build -t sheyenrath/wiremock.net-nanoserver-1803 -f .\Dockerfile.nanoserver-1803 .
+docker build -t sheyenrath/wiremock.net-nanoserver-1809 -f .\Dockerfile.nanoserver-1809 .
 ```
 
 ### 2. Delete dangling images
@@ -17,14 +18,17 @@ docker rmi $(docker images -f "dangling=true" -q)
 ### 3. Tag
 
 ``` cmd
-docker tag sheyenrath/wiremock.net-nano:latest sheyenrath/wiremock.net-nano:1.0.7
+docker tag sheyenrath/wiremock.net-nanoserver-1803:latest sheyenrath/wiremock.net-nanoserver-1803:1.0.9
+docker tag sheyenrath/wiremock.net-nanoserver-1809:latest sheyenrath/wiremock.net-nanoserver-1809:1.0.9
 ```
 
 ### 4. Push
 
 ``` cmd
-docker push sheyenrath/wiremock.net-nano:latest
-docker push sheyenrath/wiremock.net-nano:1.0.7
+docker push sheyenrath/wiremock.net-nanoserver-1803:latest
+docker push sheyenrath/wiremock.net-nanoserver-1803:1.0.9
+docker push sheyenrath/wiremock.net-nanoserver-1809:latest
+docker push sheyenrath/wiremock.net-nanoserver-1809:1.0.9
 ```
 
 ## Linux
