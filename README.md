@@ -17,20 +17,6 @@ docker pull sheyenrath/wiremock.net
 docker run -it --rm -p 9091:80 sheyenrath/wiremock.net
 ```
 
-## Windows Nano
-
-### Pull latest image
-
-```sh
-docker pull sheyenrath/wiremock.net-nano
-```
-
-### Start the WireMock.Net container
-
-```sh
-docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nano
-```
-
 ## Windows NanoServer 1803
 
 ### Pull latest image
@@ -43,6 +29,20 @@ docker pull sheyenrath/wiremock.net-nanoserver-1803
 
 ```sh
 docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nanoserver-1803
+```
+
+## Windows NanoServer 1809
+
+### Pull latest image
+
+```sh
+docker pull sheyenrath/wiremock.net-nanoserver-1809
+```
+
+### Start the WireMock.Net container
+
+```sh
+docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nanoserver-1809
 ```
 
 ## Commands
