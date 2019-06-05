@@ -1,5 +1,9 @@
+# 1.0.16.0 (05 June 2019)
+
 # 1.0.13.0 (15 April 2019)
 - [#16](https://github.com/WireMock-Net/WireMock.Net-docker/pull/16) - 1.0.13 [feature] contributed by [StefH](https://github.com/StefH)
+
+# 1.0.12.0 (05 April 2019)
 
 # 1.0.11.0 (30 March 2019)
 
