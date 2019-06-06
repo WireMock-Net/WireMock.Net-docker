@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
+using WireMock.Logging;
 using WireMock.Server;
 
 namespace WireMock.Net.StandAlone.NETCoreApp
@@ -12,7 +13,7 @@ namespace WireMock.Net.StandAlone.NETCoreApp
 
         static void Main(string[] args)
         {
-            server = StandAloneApp.Start(args);
+            server = StandAloneApp.Start(args, new WireMockConsoleLogger());
 
             Console.WriteLine($"{DateTime.UtcNow} Press Ctrl+C to shut down");
 
