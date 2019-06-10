@@ -45,6 +45,20 @@ docker pull sheyenrath/wiremock.net-nanoserver-1809
 docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nanoserver-1809
 ```
 
+## Windows 2019
+
+### Pull latest image
+
+```sh
+docker pull sheyenrath/wiremock.net-windows-2019
+```
+
+### Start the WireMock.Net container
+
+```sh
+docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-windows-2019
+```
+
 ## Commands
 For all possible commands, see this [WIKI - Commandlin Arguments](https://github.com/WireMock-Net/WireMock.Net-docker/wiki/Commandline-arguments)
 
