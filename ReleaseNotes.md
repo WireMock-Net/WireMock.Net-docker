@@ -1,3 +1,6 @@
+# 1.0.19.0 (15 June 2019)
+- [#20](https://github.com/WireMock-Net/WireMock.Net-docker/pull/20) - 1.0.19 [feature] contributed by [StefH](https://github.com/StefH)
+
 # 1.0.18.0 (10 June 2019)
 - [#18](https://github.com/WireMock-Net/WireMock.Net-docker/pull/18) - Add docker image 'windows 2019' [feature] contributed by [StefH](https://github.com/StefH)
 - [#19](https://github.com/WireMock-Net/WireMock.Net-docker/pull/19) - --WireMockLogger (version 1.0.18) [feature] contributed by [StefH](https://github.com/StefH)
