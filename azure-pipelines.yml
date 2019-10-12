@@ -5,7 +5,7 @@ variables:
   buildConfiguration: 'Release'
   imageName: 'wiremock.net'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
-  tag: '1.0.32'
+  tag: '1.0.33'
 
 steps:
 # Build StandAlone.NETCoreApp

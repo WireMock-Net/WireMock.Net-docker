@@ -60,7 +60,7 @@ docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-windows-2019
 ```
 
 ## Commands
-For all possible commands, see this [WIKI - Commandlin Arguments](https://github.com/WireMock-Net/WireMock.Net-docker/wiki/Commandline-arguments)
+For all possible commands, see this [WIKI - Commandline Arguments](https://github.com/WireMock-Net/WireMock.Net-docker/wiki/Commandline-arguments)
 
 ## Using
 
