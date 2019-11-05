@@ -17,7 +17,8 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 WORKDIR /app
 COPY --from=build-env /app/out ./
 EXPOSE 80
-ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80", "--ReadStaticMappings", "false", "--WireMockLogger", "WireMockConsoleLogger"]
+ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80"]
+CMD ["--WireMockLogger", "WireMockConsoleLogger"]
 
 # Just some info:
 # build with : docker build -t wiremock.net .
