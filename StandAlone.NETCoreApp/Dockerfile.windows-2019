@@ -19,3 +19,7 @@ COPY --from=build-env /app/out ./
 EXPOSE 80
 ENTRYPOINT ["dotnet", "wiremock-net.dll", "--Urls", "http://*:80"]
 CMD ["--WireMockLogger", "WireMockConsoleLogger"]
+
+# Just some info to build and run:
+# build with : docker build -t sheyenrath/wiremock.net-windows-2019 -f Dockerfile.windows-2019 .
+# run with   : docker run --rm -i -p 9090:80 sheyenrath/wiremock.net-windows-2019 --AdminUsername a --AdminPassword b
