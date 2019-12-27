@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using WireMock.Server;
+using WireMock.Settings;
 
 namespace WireMock.Net.StandAlone.NETCoreApp
 {
     class Program
     {
         private static int sleepTime = 30000;
-        private static FluentMockServer server;
+        private static WireMockServer server;
 
         static void Main(string[] args)
         {
-            server = StandAloneApp.Start(args);
+            var settings = WireMockServerSettingsParser.ParseArguments(args);
+            server = WireMockServer.Start(settings);
 
             Console.WriteLine($"{DateTime.UtcNow} Press Ctrl+C to shut down");
 
