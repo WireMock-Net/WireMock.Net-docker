@@ -5,7 +5,7 @@ variables:
   buildConfiguration: 'Release'
   imageName1803: 'wiremock.net-nanoserver-1803'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
-  tag: '1.1.1'
+  tag: '1.1.2'
 
 steps:
 # Build StandAlone.NETCoreApp
