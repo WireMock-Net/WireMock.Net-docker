@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2041
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandAlone.NETCoreApp", "StandAlone.NETCoreApp\StandAlone.NETCoreApp.csproj", "{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}"
 EndProject
