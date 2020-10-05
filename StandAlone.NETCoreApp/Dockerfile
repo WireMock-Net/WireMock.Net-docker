@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
 
 LABEL maintainer="Stef Heyenrath"
 
@@ -13,7 +13,7 @@ COPY *.cs ./
 RUN dotnet publish -c Release -r linux-x64 -o out
 
 # build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+FROM mcr.microsoft.com/dotnet/core/runtime-deps:3.1-bionic
 WORKDIR /app
 COPY --from=build-env /app/out ./
 EXPOSE 80
@@ -21,5 +21,5 @@ ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80"]
 CMD ["--WireMockLogger", "WireMockConsoleLogger"]
 
 # Just some info:
-# build with : docker build -t wiremock.net .
-# run with   : docker run --rm -p 9090:80 wiremock.net
+# build with : docker build -t sheyenrath/wiremock.net .
+# run with   : docker run --rm -p 9091:80 sheyenrath/wiremock.net
