@@ -13,7 +13,7 @@ COPY *.cs ./
 RUN dotnet publish -c Release -o out
 
 # build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+FROM mcr.microsoft.com/windows/nanoserver:2004
 WORKDIR /app
 COPY --from=build-env /app/out ./
 EXPOSE 80
@@ -21,5 +21,5 @@ ENTRYPOINT ["dotnet", "wiremock-net.dll", "--Urls", "http://*:80"]
 CMD ["--WireMockLogger", "WireMockConsoleLogger"]
 
 # Just some info to build and run:
-# build with : docker build -t sheyenrath/wiremock.net-windows-2019 -f Dockerfile.windows-2019 .
-# run with   : docker run --rm -i -p 9090:80 sheyenrath/wiremock.net-windows-2019 --AdminUsername a --AdminPassword b
+# build with : docker build -t sheyenrath/wiremock.net-nanoserver-1809 -f Dockerfile.nanoserver-1809 .
+# run with   : docker run --rm -i -p 9090:80 sheyenrath/wiremock.net-nanoserver-1809 --AdminUsername a --AdminPassword b
