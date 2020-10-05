@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		azure-pipelines-windows-2019.yml = azure-pipelines-windows-2019.yml
 		azure-pipelines.nano.yml = azure-pipelines.nano.yml
 		azure-pipelines.yml = azure-pipelines.yml
+		StandAlone.NETCoreApp\docker-compose.yml = StandAlone.NETCoreApp\docker-compose.yml
 		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
 		README.md = README.md
 		ReleaseNotes.md = ReleaseNotes.md
