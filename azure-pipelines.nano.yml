@@ -8,7 +8,7 @@ variables:
 pool:
   ${{ if eq( variables['poolType'], 'Hosted' ) }}:
   vmImage: 'windows-2019'
-  ${{ if variables['poolType'], 'SelfHosted' ) }}:
+  ${{ if eq( variables['poolType'], 'SelfHosted' ) }}:
   name: 'MyBuildPool'
 
 steps:
