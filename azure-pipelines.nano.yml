@@ -1,14 +1,15 @@
-pool:
-${{ if eq($(PipelineVariable), 'Hosted') }}:
-  vmImage: 'windows-2019'
-${{ if eq($(PipelineVariable), 'SelfHosted') }}:
-  name: 'MyBuildPool'
-
 variables:
   buildConfiguration: 'Release'
   imageNameNano: 'wiremock.net-nanoserver-$(nano-version)'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
   tag: '1.3.1'
+  poolType: '$(pool-type)'
+
+pool:
+  ${{ if eq( variables['poolType'], 'Hosted' ) }}:
+  vmImage: 'windows-2019'
+  ${{ if variables['poolType'], 'SelfHosted' ) }}:
+  name: 'MyBuildPool'
 
 steps:
 # Build StandAlone.NETCoreApp
