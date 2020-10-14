@@ -1,5 +1,8 @@
 pool:
+${{ if eq($(PipelineVariable), 'Hosted') }}:
   vmImage: 'windows-2019'
+${{ if eq($(PipelineVariable), 'SelfHosted') }}:
+  name: 'MyBuildPool'
 
 variables:
   buildConfiguration: 'Release'
