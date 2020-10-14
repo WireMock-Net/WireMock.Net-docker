@@ -8,10 +8,7 @@ variables:
 trigger: none
 
 pool:
-- ${{ if eq( variables['poolType'], 'Hosted' ) }}:
-  vmImage: windows-2019
-- ${{ if eq( variables['poolType'], 'SelfHosted' ) }}:
-  name: MyBuildPool
+  demands: 'self-hosted'
 
 steps:
 # Build StandAlone.NETCoreApp
