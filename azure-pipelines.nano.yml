@@ -38,7 +38,7 @@ jobs:
   # echo | set /p="$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
   # For winxxxx ; just use --password
   - script: |
-    docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
-    docker push $(DOCKER_ID)/$(imageNameNano):latest
-    docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
+      docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
+      docker push $(DOCKER_ID)/$(imageNameNano):latest
+      docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
     displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
