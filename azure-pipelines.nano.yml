@@ -9,7 +9,7 @@ trigger: none
 
 jobs:
 - job:
-  condition: and(succeeded(), ne(variables['pooltype'], 'Hosted'))
+  condition: eq(variables['pooltype'], 'Hosted')
   displayName: Build and create Docker image (Hosted)
   pool: 
     vmimage: 'windows-latest'
@@ -40,7 +40,7 @@ jobs:
     displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
 
 - job:
-  condition: and(succeeded(), eq(variables['pooltype'], 'SelfHosted'))
+  condition: eq(variables['pooltype'], 'SelfHosted')
   displayName: Build and create Docker image (SelfHosted)
   pool: 
     name: 'MyBuildPool'
