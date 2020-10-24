@@ -14,9 +14,9 @@ jobs:
 - job: build
   displayName: Build and create Docker image
   pool: 
-    ${{ if eq(variables['pooltype'], 'Hosted') }}:
+    ${{ if ne(variables['pooltype'], 'SelfHosted') }}:
     vmimage: 'windows-latest'
-    ${{ if ne(variables['pooltype'], 'Hosted') }}:
+    ${{ if eq(variables['pooltype'], 'SelfHosted') }}:
     name: 'MyBuildPool'
 
   steps:
