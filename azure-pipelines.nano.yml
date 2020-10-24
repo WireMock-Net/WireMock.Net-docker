@@ -43,5 +43,5 @@ jobs:
 
   - task: PowerShell@2
     displayName: Delete dangling Docker images
-    inputs: docker rmi $(docker images --filter "dangling=true" --quiet)
-    
+    targetType: inline
+    arguments: docker rmi $(docker images --filter "dangling=true" --quiet)    
