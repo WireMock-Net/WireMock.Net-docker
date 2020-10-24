@@ -3,17 +3,19 @@ variables:
   imageNameNano: 'wiremock.net-nanoserver-$(nano-version)'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
   tag: '1.3.3'
+  isHosted: $[eq($(pool-type), 'Hosted')]
+  isSelfHosted: $[eq($(pool-type), 'SelfHosted')]
 
 trigger: none
 
 jobs:
 - job:
   steps:
-  - script: echo The pooltype is $(pool-type).
+  - script: echo The pooltype is $(pool-type) $isHosted $isSelfHosted.
     displayName: Show pooltype
 
 - job:
-  condition: eq('$(pool-type)', 'Hosted')
+  condition: isHosted
   displayName: Build and create Docker image (Hosted)
   pool: 
     vmimage: 'windows-latest'
@@ -44,7 +46,7 @@ jobs:
     displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
 
 - job:
-  condition: eq('$(pool-type)', 'SelfHosted')
+  condition: isSelfHosted
   displayName: Build and create Docker image (SelfHosted)
   pool: 
     name: 'MyBuildPool'
