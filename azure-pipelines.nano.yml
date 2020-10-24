@@ -7,6 +7,9 @@ variables:
 
 trigger: none
 
+pool:
+  vmImage: 'windows-2019'
+
 jobs:
 - job: build
   displayName: build
@@ -17,6 +20,8 @@ jobs:
       vmimage: 'windows-latest'
 
   steps:
+  - script: echo The pooltype is $(pool-type)
+
     # Build StandAlone.NETCoreApp
   - task: DotNetCoreCLI@2
     displayName: Build StandAlone.NETCoreApp
