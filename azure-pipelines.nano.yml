@@ -7,18 +7,20 @@ variables:
 
 trigger: none
 
-pool:
-  vmImage: 'windows-latest'
-
 jobs:
-- job: build
-  displayName: Build and create Docker image
+- job:
+  condition: and(eq(variables['pooltype'], 'Hosted'))
+  displayName: Build and create Docker image (Hosted)
   pool: 
-    ${{ if eq(variables['pooltype'], 'SelfHosted') }}:
-    name: 'MyBuildPool'
-    ${{ if eq(variables['pooltype'], 'Hosted') }}:
     vmimage: 'windows-latest'
 
+- job:
+  condition: and(eq(variables['pooltype'], 'SelfHosted'))
+  displayName: Build and create Docker image (Hosted)
+  pool: 
+    name: 'MyBuildPool'
+
+- job: Build
   steps:
   - script: echo The pooltype is $(pool-type).
     displayName: Show pooltype
