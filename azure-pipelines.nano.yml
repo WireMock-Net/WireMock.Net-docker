@@ -16,7 +16,7 @@ jobs:
   pool: 
     ${{ if eq(variables['pooltype'], 'Hosted') }}:
     vmimage: 'windows-latest'
-    ${{ if eq(variables['pooltype'], 'SelfHosted') }}:
+    ${{ if ne(variables['pooltype'], 'Hosted') }}:
     name: 'MyBuildPool'
 
   steps:
