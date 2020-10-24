@@ -7,37 +7,39 @@ variables:
 
 trigger: none
 
-pool:
-${{ if eq(variables['pooltype'], 'SelfHosted') }}:
-  name: 'MyBuildPool'
-${{ if ne(variables['pooltype'], 'Hosted') }}:
-  vmimage: 'windows-latest'
+jobs:
+- job: build
+  displayName: build
+  pool: 
+    ${{ if eq(variables['pooltype'], 'SelfHosted') }}:
+      name: 'MyBuildPool'
+    ${{ if eq(variables['pooltype'], 'Hosted') }}:
+      vmimage: 'windows-latest'
 
-steps:
-# Build StandAlone.NETCoreApp
-- task: DotNetCoreCLI@2
-  displayName: Build StandAlone.NETCoreApp
-  inputs:
-    command: 'build'
-    arguments: /p:Configuration=$(buildConfiguration)
-    projects: $(buildProjects)
+  steps:
+    # Build StandAlone.NETCoreApp
+   - task: DotNetCoreCLI@2
+     displayName: Build StandAlone.NETCoreApp
+     inputs:
+       command: 'build'
+       arguments: /p:Configuration=$(buildConfiguration)
+       projects: $(buildProjects)
 
-# Docker
-- script: docker build -t $(DOCKER_ID)/$(imageNameNano) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version) ./StandAlone.NETCoreApp
-  displayName: 'Build Docker image [$(imageNameNano):latest]'
+    # Docker
+    - script: docker build -t $(DOCKER_ID)/$(imageNameNano) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version) ./StandAlone.NETCoreApp
+      displayName: 'Build Docker image [$(imageNameNano):latest]'
 
-- script: docker tag $(DOCKER_ID)/$(imageNameNano):latest $(DOCKER_ID)/$(imageNameNano):$(tag)
-  displayName: 'Tag Docker image [$(imageNameNano):$(tag)]'
+    - script: docker tag $(DOCKER_ID)/$(imageNameNano):latest $(DOCKER_ID)/$(imageNameNano):$(tag)
+      displayName: 'Tag Docker image [$(imageNameNano):$(tag)]'
 
+    # for vs2017-win2016 only !
+    # https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
+    # https://github.com/Microsoft/azure-pipelines-tasks/issues/6480#issuecomment-453765536
+    # echo | set /p="$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
 
-# for vs2017-win2016 only !
-# https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
-# https://github.com/Microsoft/azure-pipelines-tasks/issues/6480#issuecomment-453765536
-# echo | set /p="$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
-
-# For winxxxx ; just use --password
-- script: |
-    docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
-    docker push $(DOCKER_ID)/$(imageNameNano):latest
-    docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
-  displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
+    # For winxxxx ; just use --password
+    - script: |
+      docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
+      docker push $(DOCKER_ID)/$(imageNameNano):latest
+      docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
+      displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
