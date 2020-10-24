@@ -16,7 +16,7 @@ jobs:
     displayName: Show pooltype
 
 - job:
-  condition: isHosted
+  condition: variables['isHosted']
   displayName: Build and create Docker image (Hosted)
   pool: 
     vmimage: 'windows-latest'
@@ -47,7 +47,7 @@ jobs:
     displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
 
 - job:
-  condition: isSelfHosted
+  condition: variables['isSelfHosted']
   displayName: Build and create Docker image (SelfHosted)
   pool: 
     name: 'MyBuildPool'
