@@ -1,37 +1,50 @@
-pool:
-  vmImage: 'windows-2019'
-
 variables:
   buildConfiguration: 'Release'
   imageNameNano: 'wiremock.net-nanoserver-$(nano-version)'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
   tag: '1.3.3'
+  deleteDangling: '$(deleteDanglingImages)'
 
-steps:
-# Build StandAlone.NETCoreApp
-- task: DotNetCoreCLI@2
-  displayName: Build StandAlone.NETCoreApp
-  inputs:
-    command: 'build'
-    arguments: /p:Configuration=$(buildConfiguration)
-    projects: $(buildProjects)
+trigger: none
 
-# Docker
-- script: docker build -t $(DOCKER_ID)/$(imageNameNano) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version) ./StandAlone.NETCoreApp
-  displayName: 'Build Docker image [$(imageNameNano):latest]'
+jobs:
+- job:
+  displayName: Build and create Docker image (SelfHosted)
+  pool:
+    name: 'MyBuildPool'
 
-- script: docker tag $(DOCKER_ID)/$(imageNameNano):latest $(DOCKER_ID)/$(imageNameNano):$(tag)
-  displayName: 'Tag Docker image [$(imageNameNano):$(tag)]'
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: Build StandAlone.NETCoreApp
+    inputs:
+      command: 'build'
+      arguments: /p:Configuration=$(buildConfiguration)
+      projects: $(buildProjects)
 
+  - script: docker info
+    displayName: 'Docker Info'
 
-# for vs2017-win2016 only !
-# https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
-# https://github.com/Microsoft/azure-pipelines-tasks/issues/6480#issuecomment-453765536
-# echo | set /p="$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
+  - script: docker build -t $(DOCKER_ID)/$(imageNameNano) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version) ./StandAlone.NETCoreApp
+    displayName: 'Build Docker image [$(imageNameNano):latest]'
 
-# For winxxxx ; just use --password
-- script: |
-    docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
-    docker push $(DOCKER_ID)/$(imageNameNano):latest
-    docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
-  displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
+  - script: docker tag $(DOCKER_ID)/$(imageNameNano):latest $(DOCKER_ID)/$(imageNameNano):$(tag)
+    displayName: 'Tag Docker image [$(imageNameNano):$(tag)]'
+
+  - script: |
+      docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
+      docker push $(DOCKER_ID)/$(imageNameNano):latest
+      docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
+    displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
+
+  - script: docker rmi $(DOCKER_ID)/$(imageNameNano)
+    displayName: Delete Docker image [$(imageNameNano):latest]'
+
+  - script: docker rmi $(DOCKER_ID)/$(imageNameNano):$(tag)
+    displayName: Delete Docker image [$(imageNameNano):$(tag)]'
+
+  - task: PowerShell@2
+    condition: and(succeeded(), eq(variables['deleteDangling'], 'yes'))
+    displayName: Delete dangling Docker images
+    inputs:
+      targetType: inline
+      script: docker rmi $(docker images --filter "dangling=true" --quiet)
