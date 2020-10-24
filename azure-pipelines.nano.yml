@@ -34,3 +34,12 @@ jobs:
       docker push $(DOCKER_ID)/$(imageNameNano):latest
       docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
     displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
+
+  - script: docker rmi $(DOCKER_ID)/$(imageNameNano)
+    displayName: Delete Docker image [$(imageNameNano):latest]'
+
+  - script: docker rmi $(DOCKER_ID)/$(imageNameNano):$(tag)
+    displayName: Delete Docker image [$(imageNameNano):$(tag)]'
+
+  - script: docker rmi $(docker images -f "dangling=true" -q)
+    displayName: Delete dangling Docker images
