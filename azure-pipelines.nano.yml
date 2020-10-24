@@ -20,7 +20,7 @@ jobs:
       vmimage: 'windows-latest'
 
   steps:
-  - script: echo The pooltype is $(pool-type) : $(pool).
+  - script: echo The pooltype is $(pool-type).
     displayName: Show pooltype
 
     # Build StandAlone.NETCoreApp
