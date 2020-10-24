@@ -8,11 +8,11 @@ variables:
 trigger: none
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'windows-latest'
 
 jobs:
 - job: build
-  displayName: build
+  displayName: Build and create Docker image
   pool: 
     ${{ if eq(variables['pooltype'], 'SelfHosted') }}:
       name: 'MyBuildPool'
@@ -20,7 +20,8 @@ jobs:
       vmimage: 'windows-latest'
 
   steps:
-  - script: echo The pooltype is $(pool-type)
+  - script: echo The pooltype is $(pool-type) : $(pool).
+    displayName: Show pooltype
 
     # Build StandAlone.NETCoreApp
   - task: DotNetCoreCLI@2
