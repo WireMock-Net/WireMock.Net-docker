@@ -14,13 +14,10 @@ jobs:
 - job: build
   displayName: Build and create Docker image
   pool: 
+    ${{ if eq(variables['pooltype'], 'Hosted') }}:
+    vmimage: 'windows-latest'
+    ${{ if eq(variables['pooltype'], 'SelfHosted') }}:
     name: 'MyBuildPool'
-
-  #pool: 
-    #${{ if eq(variables['pooltype'], 'SelfHosted') }}:
-      #name: 'MyBuildPool'
-    #${{ if eq(variables['pooltype'], 'Hosted') }}:
-     # vmimage: 'windows-latest'
 
   steps:
   - script: echo The pooltype is $(pool-type).
