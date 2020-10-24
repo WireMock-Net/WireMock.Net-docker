@@ -13,7 +13,7 @@ jobs:
     displayName: Show pooltype
 
 - job:
-  condition: eq($(pool-type), 'Hosted')
+  condition: eq('$(pool-type)', 'Hosted')
   displayName: Build and create Docker image (Hosted)
   pool: 
     vmimage: 'windows-latest'
@@ -44,7 +44,7 @@ jobs:
     displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
 
 - job:
-  condition: eq($(pool-type), 'SelfHosted')
+  condition: eq('$(pool-type)', 'SelfHosted')
   displayName: Build and create Docker image (SelfHosted)
   pool: 
     name: 'MyBuildPool'
