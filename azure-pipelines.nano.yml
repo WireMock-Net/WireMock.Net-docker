@@ -41,5 +41,7 @@ jobs:
   - script: docker rmi $(DOCKER_ID)/$(imageNameNano):$(tag)
     displayName: Delete Docker image [$(imageNameNano):$(tag)]'
 
-  - script: docker rmi $(docker images -f "dangling=true" -q)
+  - task: PowerShell@2
     displayName: Delete dangling Docker images
+    inputs: docker rmi $(docker images --filter "dangling=true" --quiet)
+    
