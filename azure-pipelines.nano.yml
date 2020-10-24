@@ -3,8 +3,9 @@ variables:
   imageNameNano: 'wiremock.net-nanoserver-$(nano-version)'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
   tag: '1.3.3'
-  isHosted: $[eq($(pool-type), 'Hosted')]
-  isSelfHosted: $[eq($(pool-type), 'SelfHosted')]
+  pool-type: $(pool-type)
+  isHosted: $[eq(variables['pool-type'], 'Hosted')]
+  isSelfHosted: $[eq(variables['pool-type'], 'SelfHosted')]
 
 trigger: none
 
