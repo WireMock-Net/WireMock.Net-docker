@@ -9,13 +9,13 @@ trigger: none
 
 jobs:
 - job:
-  condition: and(eq(variables['pooltype'], 'Hosted'))
+  condition: eq(variables['pooltype'], 'Hosted')
   displayName: Build and create Docker image (Hosted)
   pool: 
     vmimage: 'windows-latest'
 
 - job:
-  condition: and(eq(variables['pooltype'], 'SelfHosted'))
+  condition: eq(variables['pooltype'], 'SelfHosted')
   displayName: Build and create Docker image (Hosted)
   pool: 
     name: 'MyBuildPool'
