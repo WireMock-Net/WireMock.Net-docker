@@ -17,32 +17,24 @@ docker pull sheyenrath/wiremock.net
 docker run -it --rm -p 9091:80 sheyenrath/wiremock.net
 ```
 
-## Windows NanoServer 1803
+## Windows NanoServer
+
+The following versions are supported:
+- nanoserver-1803
+- nanoserver-1809
+- nanoserver-1903
+- nanoserver-1909
 
 ### Pull latest image
 
 ```sh
-docker pull sheyenrath/wiremock.net-nanoserver-1803
+docker pull sheyenrath/wiremock.net-nanoserver-<version>
 ```
 
 ### Start the WireMock.Net container
 
 ```sh
-docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nanoserver-1803
-```
-
-## Windows NanoServer 1809
-
-### Pull latest image
-
-```sh
-docker pull sheyenrath/wiremock.net-nanoserver-1809
-```
-
-### Start the WireMock.Net container
-
-```sh
-docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nanoserver-1809
+docker run -it --rm -p 9091:80 sheyenrath/wiremock.net-nanoserver-<version>
 ```
 
 ## Windows 2019
