@@ -9,14 +9,14 @@ trigger: none
 
 jobs:
 - job:
-  condition: eq(variables['pooltype'], 'Hosted')
+  condition: ne(variables['pooltype'], 'SelfHosted')
   displayName: Build and create Docker image (Hosted)
   pool: 
     vmimage: 'windows-latest'
 
 - job:
   condition: eq(variables['pooltype'], 'SelfHosted')
-  displayName: Build and create Docker image (Hosted)
+  displayName: Build and create Docker image (SelfHosted)
   pool: 
     name: 'MyBuildPool'
 
