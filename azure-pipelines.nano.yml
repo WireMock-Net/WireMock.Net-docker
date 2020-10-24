@@ -3,49 +3,11 @@ variables:
   imageNameNano: 'wiremock.net-nanoserver-$(nano-version)'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
   tag: '1.3.3'
-  pooltype: $(pool-type)
-  ${{ if eq(variables['pooltype'], 'Hosted') }}:
-    isHosted: true
-  ${{ if not(eq(variables['pooltype'], 'Hosted')) }}:
-    isHosted: false
 
 trigger: none
 
 jobs:
 - job:
-  steps:
-  - script: echo The pooltype is $(pooltype) $(isHosted) $(isSelfHosted).
-    displayName: Show pooltype
-
-- job:
-  condition: variables['isHosted']
-  displayName: Build and create Docker image (Hosted)
-  pool: 
-    vmimage: 'windows-latest'
-
-  steps:
-  - task: DotNetCoreCLI@2
-    displayName: Build StandAlone.NETCoreApp
-    inputs:
-      command: 'build'
-      arguments: /p:Configuration=$(buildConfiguration)
-      projects: $(buildProjects)
-
-   # Docker
-  - script: docker build -t $(DOCKER_ID)/$(imageNameNano) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version) ./StandAlone.NETCoreApp
-    displayName: 'Build Docker image [$(imageNameNano):latest]'
-
-  - script: docker tag $(DOCKER_ID)/$(imageNameNano):latest $(DOCKER_ID)/$(imageNameNano):$(tag)
-    displayName: 'Tag Docker image [$(imageNameNano):$(tag)]'
-
-  - script: |
-      docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
-      docker push $(DOCKER_ID)/$(imageNameNano):latest
-      docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
-    displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
-
-- job:
-  condition: not(variables['isHosted'])
   displayName: Build and create Docker image (SelfHosted)
   pool: 
     name: 'MyBuildPool'
@@ -58,7 +20,6 @@ jobs:
       arguments: /p:Configuration=$(buildConfiguration)
       projects: $(buildProjects)
 
-   # Docker
   - script: docker build -t $(DOCKER_ID)/$(imageNameNano) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version) ./StandAlone.NETCoreApp
     displayName: 'Build Docker image [$(imageNameNano):latest]'
 
