@@ -45,4 +45,4 @@ jobs:
     displayName: Delete dangling Docker images
     inputs:
       targetType: inline
-      arguments: docker rmi $(docker images --filter "dangling=true" --quiet)
+      script: docker rmi $(docker images --filter "dangling=true" --quiet)
