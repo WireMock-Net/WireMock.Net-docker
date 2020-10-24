@@ -10,7 +10,7 @@ trigger: none
 jobs:
 - job:
   displayName: Build and create Docker image (SelfHosted)
-  pool: 
+  pool:
     name: 'MyBuildPool'
 
   steps:
