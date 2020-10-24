@@ -12,20 +12,16 @@ trigger: none
 jobs:
 - job:
   steps:
-  - script: echo The pooltype is $(pool-type) $isHosted $isSelfHosted.
+  - script: echo The pooltype is $(pooltype) $(isHosted) $(isSelfHosted).
     displayName: Show pooltype
 
 - job:
-  condition: variables['isHosted']
+  condition: $(isHosted)
   displayName: Build and create Docker image (Hosted)
   pool: 
     vmimage: 'windows-latest'
 
   steps:
-  - script: echo The pooltype is $(pool-type).
-    displayName: Show pooltype
-
-    # Build StandAlone.NETCoreApp
   - task: DotNetCoreCLI@2
     displayName: Build StandAlone.NETCoreApp
     inputs:
@@ -47,16 +43,12 @@ jobs:
     displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
 
 - job:
-  condition: variables['isSelfHosted']
+  condition: $(isSelfHosted)
   displayName: Build and create Docker image (SelfHosted)
   pool: 
     name: 'MyBuildPool'
 
   steps:
-  - script: echo The pooltype is $(pool-type).
-    displayName: Show pooltype
-
-    # Build StandAlone.NETCoreApp
   - task: DotNetCoreCLI@2
     displayName: Build StandAlone.NETCoreApp
     inputs:
