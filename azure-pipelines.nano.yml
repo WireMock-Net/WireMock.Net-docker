@@ -20,6 +20,9 @@ jobs:
       arguments: /p:Configuration=$(buildConfiguration)
       projects: $(buildProjects)
 
+  - script: docker info
+    displayName: 'Docker Info'
+
   - script: docker build -t $(DOCKER_ID)/$(imageNameNano) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version) ./StandAlone.NETCoreApp
     displayName: 'Build Docker image [$(imageNameNano):latest]'
 
