@@ -45,7 +45,7 @@ jobs:
     displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
 
 - job:
-  condition: variables['isSelfHosted']
+  condition: not(variables['isHosted'])
   displayName: Build and create Docker image (SelfHosted)
   pool: 
     name: 'MyBuildPool'
