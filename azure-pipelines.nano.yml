@@ -21,7 +21,7 @@ jobs:
       arguments: /p:Configuration=$(buildConfiguration)
       projects: $(buildProjects)
 
-  - task: Docker@
+  - task: Docker@2
     displayName: 'Docker info'
     inputs:
       command: 'Info'
