@@ -21,20 +21,32 @@ jobs:
       arguments: /p:Configuration=$(buildConfiguration)
       projects: $(buildProjects)
 
-  - script: docker info
-    displayName: 'Docker Info'
+  - task: Docker@
+    displayName: 'Docker info'
+    inputs:
+      command: 'Info'
 
-  - script: docker build -t $(DOCKER_ID)/$(imageNameNano) -f ./StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version) ./StandAlone.NETCoreApp
-    displayName: 'Build Docker image [$(imageNameNano):latest]'
+  - task: Docker@2
+    displayName: 'Build Docker [$(imageNameNano)(latest,$(tag)]'
+    inputs:
+      command: 'Build'
+      containerRegistry: 'DockerRegistry'
+      repository: '$(DOCKER_ID)/$(imageName)'
+      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
+      tags: |
+        $(tag)
+        latest
 
-  - script: docker tag $(DOCKER_ID)/$(imageNameNano):latest $(DOCKER_ID)/$(imageNameNano):$(tag)
-    displayName: 'Tag Docker image [$(imageNameNano):$(tag)]'
-
-  - script: |
-      docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
-      docker push $(DOCKER_ID)/$(imageNameNano):latest
-      docker push $(DOCKER_ID)/$(imageNameNano):$(tag)
-    displayName: 'Push Docker image [$(imageNameNano)(latest,$(tag)]'
+  - task: Docker@2
+    displayName: 'Push Docker [$(imageNameNano)(latest,$(tag)]'
+    inputs:
+      command: 'Push'
+      containerRegistry: 'DockerRegistry'
+      repository: '$(DOCKER_ID)/$(imageName)'
+      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
+      tags: |
+        $(tag)
+        latest
 
   - script: docker rmi $(DOCKER_ID)/$(imageNameNano)
     displayName: Delete Docker image [$(imageNameNano):latest]'
