@@ -29,17 +29,15 @@ steps:
     tags: |
       $(tag)
       latest
-      
-# Docker
-#- script: docker build -t $(DOCKER_ID)/$(imageName) -f ./StandAlone.NETCoreApp/Dockerfile ./StandAlone.NETCoreApp
-#  displayName: 'Build Docker image [$(imageName):latest]'
 
-#- script: docker tag $(DOCKER_ID)/$(imageName):latest $(DOCKER_ID)/$(imageName):$(tag)
-#  displayName: 'Tag Docker image [$(imageName):$(tag)]'
-
-# https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
-#- script: |
-#    echo "$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
-#    docker push $(DOCKER_ID)/$(imageName):latest
-#    docker push $(DOCKER_ID)/$(imageName):$(tag)
-#  displayName: 'Push Docker images [$(imageName):latest and $(imageName):$(tag)]'
+- task: Docker@2
+  displayName: Push an image
+  inputs:
+    command: 'Push'
+    containerRegistry: 'DockerRegistry'
+    repository: '$(imageName)'
+    dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
+    tags: |
+      $(tag)
+      latest
+    addPipelineData: false
