@@ -24,14 +24,14 @@ jobs:
   - task: Docker@2
     displayName: 'Docker info'
     inputs:
-      command: 'Info'
+      command: 'info'
 
   - task: Docker@2
     displayName: 'Build Docker [$(imageNameNano)(latest,$(tag)]'
     inputs:
-      command: 'Build'
+      command: 'build'
       containerRegistry: 'DockerRegistry'
-      repository: '$(DOCKER_ID)/$(imageName)'
+      repository: '$(DOCKER_ID)/$(imageNameNano)'
       dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
       tags: |
         $(tag)
@@ -40,9 +40,9 @@ jobs:
   - task: Docker@2
     displayName: 'Push Docker [$(imageNameNano)(latest,$(tag)]'
     inputs:
-      command: 'Push'
+      command: 'push'
       containerRegistry: 'DockerRegistry'
-      repository: '$(DOCKER_ID)/$(imageName)'
+      repository: '$(DOCKER_ID)/$(imageNameNano)'
       dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
       tags: |
         $(tag)
