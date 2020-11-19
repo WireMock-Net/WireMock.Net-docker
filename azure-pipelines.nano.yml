@@ -32,7 +32,7 @@ jobs:
       command: 'build'
       containerRegistry: 'DockerRegistry'
       repository: '$(DOCKER_ID)/$(imageNameNano)'
-      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
+      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version)'
       tags: |
         $(tag)
         latest
@@ -43,7 +43,7 @@ jobs:
       command: 'push'
       containerRegistry: 'DockerRegistry'
       repository: '$(DOCKER_ID)/$(imageNameNano)'
-      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
+      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.nanoserver-$(nano-version)'
       tags: |
         $(tag)
         latest
