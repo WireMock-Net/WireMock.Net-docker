@@ -18,22 +18,24 @@ steps:
     arguments: /p:Configuration=$(buildConfiguration)
     projects: $(buildProjects)
 
-# Docker
-- script: docker build -t $(DOCKER_ID)/$(imageName) -f ./StandAlone.NETCoreApp/Dockerfile.windows-2019 ./StandAlone.NETCoreApp
-  displayName: 'Build Docker image [$(imageName):latest]'
+- task: Docker@2
+  displayName: 'Build Docker [$(imageName)(latest,$(tag)]'
+  inputs:
+    command: 'build'
+    containerRegistry: 'DockerRegistry'
+    repository: '$(DOCKER_ID)/$(imageName)'
+    dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
+    tags: |
+      $(tag)
+      latest
 
-- script: docker tag $(DOCKER_ID)/$(imageName):latest $(DOCKER_ID)/$(imageName):$(tag)
-  displayName: 'Tag Docker image [$(imageName):$(tag)]'
-
-
-# for vs2017-win2016 only !
-# https://stackoverflow.com/questions/51489359/docker-using-password-via-the-cli-is-insecure-use-password-stdin
-# https://github.com/Microsoft/azure-pipelines-tasks/issues/6480#issuecomment-453765536
-# echo | set /p="$(DOCKER_PWD)" | docker login --username $(DOCKER_ID) --password-stdin
-
-# For win1803 ; just use --password
-- script: |
-    docker login --username $(DOCKER_ID) --password $(DOCKER_PWD)
-    docker push $(DOCKER_ID)/$(imageName):latest
-    docker push $(DOCKER_ID)/$(imageName):$(tag)
-  displayName: 'Push Docker image [$(imageName)(latest,$(tag)]'
+- task: Docker@2
+  displayName: 'Push Docker [$(imageName)(latest,$(tag)]'
+  inputs:
+    command: 'push'
+    containerRegistry: 'DockerRegistry'
+    repository: '$(DOCKER_ID)/$(imageName)'
+    dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile'
+    tags: |
+      $(tag)
+      latest
