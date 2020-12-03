@@ -12,12 +12,17 @@ namespace WireMock.Net.StandAlone.NETCoreApp
 
         static void Main(string[] args)
         {
-            var settings = WireMockServerSettingsParser.ParseArguments(args);
+            if (WireMockServerSettingsParser.TryParseArguments(args, out var settings))
+            {
+                Console.WriteLine($"Commandline arguments are invalid. WireMock.Net cannot start.");
+                Environment.Exit(0);
+            }
+
             server = WireMockServer.Start(settings);
 
             Console.WriteLine($"{DateTime.UtcNow} Press Ctrl+C to shut down");
 
-            System.Console.CancelKeyPress += (s,e) =>
+            Console.CancelKeyPress += (s, e) =>
             {
                 Stop("CancelKeyPress");
             };
@@ -27,7 +32,7 @@ namespace WireMock.Net.StandAlone.NETCoreApp
                 Stop("AssemblyLoadContext.Default.Unloading");
             };
 
-            while(true)
+            while (true)
             {
                 Console.WriteLine($"{DateTime.UtcNow} WireMock.Net server running");
                 Thread.Sleep(sleepTime);

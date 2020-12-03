@@ -10,7 +10,11 @@ pool:
   vmImage: 'Ubuntu-latest'
 
 steps:
-# Build StandAlone.NETCoreApp
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '5.0.x'
+
 - task: DotNetCoreCLI@2
   displayName: Build StandAlone.NETCoreApp
   inputs:
