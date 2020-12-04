@@ -12,7 +12,7 @@ namespace WireMock.Net.StandAlone.NETCoreApp
 
         static void Main(string[] args)
         {
-            if (WireMockServerSettingsParser.TryParseArguments(args, out var settings))
+            if (!WireMockServerSettingsParser.TryParseArguments(args, out var settings))
             {
                 Console.WriteLine($"Commandline arguments are invalid. WireMock.Net cannot start.");
                 Environment.Exit(0);
