@@ -20,7 +20,6 @@ docker run -it --rm -p 9091:80 sheyenrath/wiremock.net
 ## Windows NanoServer
 
 The following versions are supported:
-- nanoserver-1803
 - nanoserver-1809
 - nanoserver-1903
 - nanoserver-1909
