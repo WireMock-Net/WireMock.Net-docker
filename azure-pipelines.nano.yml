@@ -2,7 +2,7 @@ variables:
   buildConfiguration: 'Release'
   imageNameNano: 'wiremock.net-nanoserver-$(nano-version)'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
-  tag: '1.4.27'
+  tag: '1.4.28'
   deleteDangling: '$(deleteDanglingImages)'
 
 trigger: none
