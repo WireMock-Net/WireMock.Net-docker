@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
 LABEL maintainer="Stef Heyenrath"
 
@@ -13,7 +13,7 @@ COPY *.cs ./
 RUN dotnet publish -c Release -r linux-x64 -o out
 
 # build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env /app/out ./
 EXPOSE 80
