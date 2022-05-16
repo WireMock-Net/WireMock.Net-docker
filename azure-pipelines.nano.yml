@@ -14,6 +14,11 @@ jobs:
     name: 'MyBuildPool'
 
   steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core SDK'
+    inputs:
+      version: 6.0.x
+
   - task: DotNetCoreCLI@2
     displayName: Build StandAlone.NETCoreApp
     inputs:
