@@ -8,19 +8,24 @@
 docker build -t sheyenrath/wiremock.net-nanoserver-1809 -f .\Dockerfile.nanoserver-1809 .
 ```
 
-### 2. Delete dangling images
+### 2. Stop
+``` ps
+docker rm -f $(docker ps -a -q)
+```
+
+### 3. Delete dangling images
 
 ``` ps
 docker rmi $(docker images -f "dangling=true" -q)
 ```
 
-### 3. Tag
+### 4. Tag
 
 ``` cmd
 docker tag sheyenrath/wiremock.net-nanoserver-1809:latest sheyenrath/wiremock.net-nanoserver-1809:1.4.42
 ```
 
-### 4. Push
+### 5. Push
 
 ``` cmd
 docker push sheyenrath/wiremock.net-nanoserver-1809:latest
