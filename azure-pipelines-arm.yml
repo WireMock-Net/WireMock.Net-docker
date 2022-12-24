@@ -1,0 +1,67 @@
+variables:
+  buildConfiguration: 'Release'
+  imageNameArm: 'wiremock.net-arm$(arm-version)'
+  buildProjects: '**/StandAlone.NETCoreApp.csproj'
+  tag: '1.5.13'
+  deleteDangling: '$(deleteDanglingImages)'
+
+trigger: none
+
+jobs:
+- job:
+  displayName: Build and create Docker image (SelfHosted)
+  pool:
+    name: 'MyBuildPool'
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core SDK'
+    inputs:
+      version: 6.0.x
+
+  - task: DotNetCoreCLI@2
+    displayName: Build StandAlone.NETCoreApp
+    inputs:
+      command: 'build'
+      arguments: /p:Configuration=$(buildConfiguration)
+      projects: $(buildProjects)
+
+  - task: Docker@2
+    displayName: 'Docker info'
+    inputs:
+      command: 'info'
+
+  - task: Docker@2
+    displayName: 'Build Docker [$(imageNameArm)(latest,$(tag)]'
+    inputs:
+      command: 'build'
+      containerRegistry: 'DockerRegistry'
+      repository: '$(DOCKER_ID)/$(imageNameArm)'
+      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.arm-$(arm-version)'
+      tags: |
+        $(tag)
+        latest
+
+  - task: Docker@2
+    displayName: 'Push Docker [$(imageNameArm)(latest,$(tag)]'
+    inputs:
+      command: 'push'
+      containerRegistry: 'DockerRegistry'
+      repository: '$(DOCKER_ID)/$(imageNameArm)'
+      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.arm-$(arm-version)'
+      tags: |
+        $(tag)
+        latest
+
+  - script: docker rmi $(DOCKER_ID)/$(imageNameArm)
+    displayName: Delete Docker image [$(imageNameArm):latest]'
+
+  - script: docker rmi $(DOCKER_ID)/$(imageNameArm):$(tag)
+    displayName: Delete Docker image [$(imageNameArm):$(tag)]'
+
+  - task: PowerShell@2
+    condition: and(succeeded(), eq(variables['deleteDangling'], 'yes'))
+    displayName: Delete dangling Docker images
+    inputs:
+      targetType: inline
+      script: docker rmi $(docker images --filter "dangling=true" --quiet)
