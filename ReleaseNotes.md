@@ -1,4 +1,31 @@
-# 1.0.19.0 (15 June 2019)
+# 1.5.13 (24 December 2022)
+- [#33](https://github.com/WireMock-Net/WireMock.Net-docker/pull/33) - Fixed images for nanoserver and updated images for windows-2019 contributed by [StefH](https://github.com/StefH)
+- [#38](https://github.com/WireMock-Net/WireMock.Net-docker/pull/38) - Add ARM (32 &amp; 64) [feature] contributed by [StefH](https://github.com/StefH)
+- [#32](https://github.com/WireMock-Net/WireMock.Net-docker/issues/32) - Wrong Nanoserver Base Image [bug]
+
+# 1.4.3 (06 February 2021)
+- [#28](https://github.com/WireMock-Net/WireMock.Net-docker/pull/28) - Use DockerRegistry service connection in Azure Pipeline [feature] contributed by [StefH](https://github.com/StefH)
+- [#29](https://github.com/WireMock-Net/WireMock.Net-docker/pull/29) - update Dockerfile with dotnet 5.0 contributed by [ibmer921150](https://github.com/ibmer921150)
+- [#30](https://github.com/WireMock-Net/WireMock.Net-docker/issues/30) - WireMock Setting 'SaveMappingToFile' raising cast object to type error [bug]
+
+# 1.3.7 (17 November 2020)
+- [#24](https://github.com/WireMock-Net/WireMock.Net-docker/pull/24) - Add docker-compose example contributed by [StefH](https://github.com/StefH)
+- [#25](https://github.com/WireMock-Net/WireMock.Net-docker/pull/25) - Use NetCore 3.1 (sdk:3.1 &amp; runtime-deps:3.1-bionic) contributed by [StefH](https://github.com/StefH)
+- [#27](https://github.com/WireMock-Net/WireMock.Net-docker/pull/27) - Pool contributed by [StefH](https://github.com/StefH)
+- [#10](https://github.com/WireMock-Net/WireMock.Net-docker/issues/10) - Persisting the recorded mappings  [documentation]
+- [#23](https://github.com/WireMock-Net/WireMock.Net-docker/issues/23) - Dockerized wiremock.net does not read static mappings [documentation]
+
+# 1.1.10 (05 March 2020)
+
+# 1.1.2.0 (09 January 2020)
+
+# 1.1.1.0 (09 January 2020)
+- [#22](https://github.com/WireMock-Net/WireMock.Net-docker/pull/22) - Removed ReadStaticMappings, moved WireMockLogger as CMD argument [feature] contributed by [kashifsoofi](https://github.com/kashifsoofi)
+- [#21](https://github.com/WireMock-Net/WireMock.Net-docker/issues/21) - CMD parameters vs ENTRYPOINT parameters
+
+# 1.0.22.0 (15 July 2019)
+
+# 1.0.21.0 (06 July 2019)
 - [#20](https://github.com/WireMock-Net/WireMock.Net-docker/pull/20) - 1.0.19 [feature] contributed by [StefH](https://github.com/StefH)
 
 # 1.0.18.0 (10 June 2019)
