@@ -1,6 +1,6 @@
 variables:
   buildConfiguration: 'Release'
-  imageNameArm: 'wiremock.net-arm-$(nano-version)'
+  imageNameArm: 'wiremock.net-arm-$(arm-version)'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
   tag: '1.5.13'
   deleteDangling: '$(deleteDanglingImages)'
@@ -37,7 +37,7 @@ jobs:
       command: 'build'
       containerRegistry: 'DockerRegistry'
       repository: '$(DOCKER_ID)/$(imageNameArm)'
-      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.arm-$(nano-version)'
+      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.arm-$(arm-version)'
       tags: |
         $(tag)
         latest
@@ -48,7 +48,7 @@ jobs:
       command: 'push'
       containerRegistry: 'DockerRegistry'
       repository: '$(DOCKER_ID)/$(imageNameArm)'
-      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.arm-$(nano-version)'
+      dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.arm-$(arm-version)'
       tags: |
         $(tag)
         latest
