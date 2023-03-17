@@ -12,6 +12,8 @@ jobs:
   displayName: Build and create Docker image (SelfHosted)
   pool:
     name: 'MyBuildPool'
+    demands:
+     - Agent.ComputerName -equals raspberrypi
 
   steps:
   - task: UseDotNet@2
