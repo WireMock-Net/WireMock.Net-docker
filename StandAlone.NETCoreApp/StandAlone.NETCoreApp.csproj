@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="WireMock.Net" Version="1.5.23" />
-        <PackageReference Include="WireMock.Net.Matchers.CSharpCode" Version="1.5.23" />
+        <PackageReference Include="WireMock.Net" Version="1.5.24" />
+        <PackageReference Include="WireMock.Net.Matchers.CSharpCode" Version="1.5.24" />
     </ItemGroup>
 
 </Project>
