@@ -3,47 +3,46 @@ using System.Threading;
 using WireMock.Server;
 using WireMock.Settings;
 
-namespace WireMock.Net.StandAlone.NETCoreApp
+namespace StandAlone.NETCoreApp;
+
+class Program
 {
-    class Program
+    private const int SleepTime = 30000;
+    private static WireMockServer _server;
+
+    static void Main(string[] args)
     {
-        private static int sleepTime = 30000;
-        private static WireMockServer server;
-
-        static void Main(string[] args)
+        if (!WireMockServerSettingsParser.TryParseArguments(args, out var settings))
         {
-            if (!WireMockServerSettingsParser.TryParseArguments(args, out var settings))
-            {
-                Console.WriteLine($"Commandline arguments are invalid. WireMock.Net cannot start.");
-                Environment.Exit(0);
-            }
-
-            server = WireMockServer.Start(settings);
-
-            Console.WriteLine($"{DateTime.UtcNow} Press Ctrl+C to shut down");
-
-            Console.CancelKeyPress += (s, e) =>
-            {
-                Stop("CancelKeyPress");
-            };
-
-            System.Runtime.Loader.AssemblyLoadContext.Default.Unloading += ctx =>
-            {
-                Stop("AssemblyLoadContext.Default.Unloading");
-            };
-
-            while (true)
-            {
-                Console.WriteLine($"{DateTime.UtcNow} WireMock.Net server running");
-                Thread.Sleep(sleepTime);
-            }
+            Console.Error.WriteLine("Commandline arguments are invalid. WireMock.Net cannot start.");
+            Environment.Exit(0);
         }
 
-        private static void Stop(string why)
+        _server = WireMockServer.Start(settings);
+
+        Console.Out.WriteLine($"{DateTime.UtcNow} Press Ctrl+C to shut down");
+
+        Console.CancelKeyPress += (s, e) =>
         {
-            Console.WriteLine($"{DateTime.UtcNow} WireMock.Net server stopping because '{why}'");
-            server.Stop();
-            Console.WriteLine($"{DateTime.UtcNow} WireMock.Net server stopped");
+            Stop("CancelKeyPress");
+        };
+
+        System.Runtime.Loader.AssemblyLoadContext.Default.Unloading += ctx =>
+        {
+            Stop("AssemblyLoadContext.Default.Unloading");
+        };
+
+        while (true)
+        {
+            Console.Out.WriteLine($"{DateTime.UtcNow} WireMock.Net server running");
+            Thread.Sleep(SleepTime);
         }
+    }
+
+    private static void Stop(string why)
+    {
+        Console.Out.WriteLine($"{DateTime.UtcNow} WireMock.Net server stopping because '{why}'");
+        _server.Stop();
+        Console.Out.WriteLine($"{DateTime.UtcNow} WireMock.Net server stopped");
     }
 }
