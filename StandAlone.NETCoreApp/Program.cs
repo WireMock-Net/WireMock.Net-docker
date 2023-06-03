@@ -8,6 +8,7 @@ namespace StandAlone.NETCoreApp;
 class Program
 {
     private const int SleepTime = 30000;
+
     private static WireMockServer _server;
 
     static void Main(string[] args)
