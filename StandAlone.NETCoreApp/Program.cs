@@ -13,7 +13,7 @@ class Program
 
     static void Main(string[] args)
     {
-        if (!WireMockServerSettingsParser.TryParseArguments(args, out var settings))
+        if (!WireMockServerSettingsParser.TryParseArguments(args, Environment.GetEnvironmentVariables(), out var settings))
         {
             Console.Error.WriteLine("Commandline arguments are invalid. WireMock.Net cannot start.");
             Environment.Exit(0);
