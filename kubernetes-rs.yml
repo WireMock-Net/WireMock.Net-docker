@@ -1,0 +1,22 @@
+# kubectl create -f kubernetes-rs.yml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: wiremock-net-rs
+  labels:
+    app: wiremock
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      name: wiremock-net
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: wiremock-net
+        image: sheyenrath/wiremock.net

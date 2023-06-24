@@ -1,0 +1,9 @@
+# kubectl create -f kubernetes-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wiremock-net
+spec:
+  containers:
+  - name: wiremock-net
+    image: sheyenrath/wiremock.net
