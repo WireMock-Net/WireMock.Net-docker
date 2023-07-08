@@ -1,0 +1,22 @@
+# kubectl create -f kubernetes-deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiremock-net-dp
+  labels:
+    app: wiremock
+    tier: frontend
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      name: wiremock-net
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: wiremock-net
+        image: sheyenrath/wiremock.net:1.5.26
