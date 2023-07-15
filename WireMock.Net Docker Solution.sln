@@ -14,10 +14,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		azure-pipelines.yml = azure-pipelines.yml
 		StandAlone.NETCoreApp\docker-compose.yml = StandAlone.NETCoreApp\docker-compose.yml
 		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
-		kubernetes-rs.yml = kubernetes-rs.yml
 		README.md = README.md
-		kubernetes-pod.yml = kubernetes-pod.yml
 		ReleaseNotes.md = ReleaseNotes.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes Examples", "Kubernetes Examples", "{F5A303C2-FAF0-44D8-90B7-986886474E09}"
+	ProjectSection(SolutionItems) = preProject
+		Kubernetes Examples\kubernetes-deployment.yml = Kubernetes Examples\kubernetes-deployment.yml
+		Kubernetes Examples\kubernetes-pod.yml = Kubernetes Examples\kubernetes-pod.yml
+		Kubernetes Examples\kubernetes-rs.yml = Kubernetes Examples\kubernetes-rs.yml
+		Kubernetes Examples\kubernetes.yml = Kubernetes Examples\kubernetes.yml
 	EndProjectSection
 EndProject
 Global
