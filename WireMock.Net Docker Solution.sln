@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
 		README.md = README.md
 		ReleaseNotes.md = ReleaseNotes.md
+		trivy.cmd = trivy.cmd
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes Examples", "Kubernetes Examples", "{F5A303C2-FAF0-44D8-90B7-986886474E09}"
