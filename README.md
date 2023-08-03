@@ -11,6 +11,12 @@ WireMock.Net-docker is a Docker image which runs [WireMock.Net](https://github.c
 docker pull sheyenrath/wiremock.net
 ```
 
+### Pull latest image (alpine)
+
+```sh
+docker pull sheyenrath/wiremock.net-alpine
+```
+
 ### Start the WireMock.Net container
 
 ```sh

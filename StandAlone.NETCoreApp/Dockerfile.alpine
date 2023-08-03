@@ -12,8 +12,6 @@ RUN dotnet restore
 COPY *.cs ./
 RUN dotnet publish -c Release -r alpine-x64 -o out \
   --self-contained true \
-  /p:PublishTrimmed=true \
-  /p:TrimMode=Link \
   /p:PublishSingleFile=true
 
 # build runtime image
@@ -27,5 +25,5 @@ ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80"]
 CMD ["--WireMockLogger", "WireMockConsoleLogger"]
 
 # Just some info:
-# build with : docker build -t sheyenrath/wiremock.net .
-# run with   : docker run --rm -p 9091:80 sheyenrath/wiremock.net
+# build with : docker build -t sheyenrath/wiremock.net-alpine .
+# run with   : docker run --rm -p 9091:80 sheyenrath/wiremock.net-alpine
