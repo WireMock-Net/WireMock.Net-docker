@@ -1,0 +1,45 @@
+variables:
+  buildConfiguration: 'Release'
+  imageName: 'wiremock.net-alpine'
+  buildProjects: '**/StandAlone.NETCoreApp.csproj'
+  tag: '1.5.32'
+
+trigger: none
+
+pool:
+  vmImage: 'Ubuntu-latest'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+
+- task: DotNetCoreCLI@2
+  displayName: Build StandAlone.NETCoreApp
+  inputs:
+    command: 'build'
+    arguments: /p:Configuration=$(buildConfiguration)
+    projects: $(buildProjects)
+
+- task: Docker@2
+  displayName: 'Build Docker [$(imageName)(latest,$(tag)]'
+  inputs:
+    command: 'build'
+    containerRegistry: 'DockerRegistry'
+    repository: '$(DOCKER_ID)/$(imageName)'
+    dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.alpine'
+    tags: |
+      $(tag)
+      latest
+
+- task: Docker@2
+  displayName: 'Push Docker [$(imageName)(latest,$(tag)]'
+  inputs:
+    command: 'push'
+    containerRegistry: 'DockerRegistry'
+    repository: '$(DOCKER_ID)/$(imageName)'
+    dockerfile: '$(Build.SourcesDirectory)/StandAlone.NETCoreApp/Dockerfile.alpine'
+    tags: |
+      $(tag)
+      latest
