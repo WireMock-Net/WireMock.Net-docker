@@ -7,6 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+	    <PackageReference Include="GraphQL" Version="7.5.0" />
+	    <PackageReference Include="GraphQL.NewtonsoftJson" Version="7.5.0" />
+		<PackageReference Include="MimeKitLite" Version="4.1.0.1" />
         <PackageReference Include="WireMock.Net" Version="1.5.33" />
         <PackageReference Include="WireMock.Net.Matchers.CSharpCode" Version="1.5.33" />
     </ItemGroup>
