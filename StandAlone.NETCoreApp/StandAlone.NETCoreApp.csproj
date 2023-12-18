@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="WireMock.Net" Version="1.5.41" />
-        <PackageReference Include="WireMock.Net.Matchers.CSharpCode" Version="1.5.41" />
+        <PackageReference Include="WireMock.Net" Version="1.5.42" />
+        <PackageReference Include="WireMock.Net.Matchers.CSharpCode" Version="1.5.42" />
     </ItemGroup>
 
 	<!-- CVE -->
