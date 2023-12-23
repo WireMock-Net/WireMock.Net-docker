@@ -1,4 +1,4 @@
 docker build -t sheyenrath/wiremock.net -f .\Dockerfile .
-docker tag sheyenrath/wiremock.net:latest sheyenrath/wiremock.net:1.5.45
+docker tag sheyenrath/wiremock.net:latest sheyenrath/wiremock.net:1.5.46
 docker rmi $(docker images -f "dangling=true" -q)
 docker images
