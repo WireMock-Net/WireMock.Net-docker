@@ -2,7 +2,7 @@ variables:
   buildConfiguration: 'Release'
   imageNameNano: 'wiremock.net-nanoserver-$(nano-version)'
   buildProjects: '**/StandAlone.NETCoreApp.csproj'
-  tag: '1.5.51'
+  tag: '1.5.52'
   deleteDangling: '$(deleteDanglingImages)'
 
 trigger: none
@@ -32,6 +32,13 @@ jobs:
     displayName: 'Docker info'
     inputs:
       command: 'info'
+
+  - task: PowerShell@2
+    condition: and(succeeded(), eq(variables['deleteDangling'], 'yes'))
+    displayName: Delete dangling Docker images (before)
+    inputs:
+      targetType: inline
+      script: docker rmi $(docker images --filter "dangling=true" --quiet)
 
   - task: Docker@2
     displayName: 'Build Docker [$(imageNameNano)(latest,$(tag)]'
@@ -63,7 +70,7 @@ jobs:
 
   - task: PowerShell@2
     condition: and(succeeded(), eq(variables['deleteDangling'], 'yes'))
-    displayName: Delete dangling Docker images
+    displayName: Delete dangling Docker images (after)
     inputs:
       targetType: inline
       script: docker rmi $(docker images --filter "dangling=true" --quiet)
