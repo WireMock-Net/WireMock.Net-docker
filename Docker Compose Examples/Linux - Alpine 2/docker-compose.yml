@@ -1,0 +1,19 @@
+services:
+  fake-service:
+    image: sheyenrath/wiremock.net-alpine:latest
+    container_name: fake-service
+    volumes:
+      - ./mappings.json:/app/__admin/mappings/mappings.json
+    command: [
+      "dotnet",
+      "wiremock-net.dll",
+      "--Urls", "http://*:80 http://*:9009",
+      "--ReadStaticMappings", "true",
+      "--WireMockLogger", "WireMockConsoleLogger",
+      "--Port", "9009" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --spider -O /dev/null localhost:9009/healthz" ]
+      interval: 30s
+      start_period: 30s
+    ports:
+      - 9009:9009

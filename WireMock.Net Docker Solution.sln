@@ -28,6 +28,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes Examples", "Kube
 		Kubernetes Examples\kubernetes.yml = Kubernetes Examples\kubernetes.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker Compose Examples", "Docker Compose Examples", "{4D4CD46C-319A-47FB-AE2A-113B194AA15C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linux", "Linux", "{89B82E51-DCDA-4587-921A-9B6DA2169926}"
+	ProjectSection(SolutionItems) = preProject
+		Docker Compose Examples\Linux\docker-compose.yml = Docker Compose Examples\Linux\docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linux - Alpine", "Linux - Alpine", "{88688E5D-6C62-4B3B-BE82-F958F56271E9}"
+	ProjectSection(SolutionItems) = preProject
+		Docker Compose Examples\Linux - Alpine\docker-compose.yml = Docker Compose Examples\Linux - Alpine\docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linux - Alpine 2", "Linux - Alpine 2", "{4BE666E8-07E3-4B22-99DA-A2F24A02EA19}"
+	ProjectSection(SolutionItems) = preProject
+		Docker Compose Examples\Linux - Alpine 2\docker-compose.yml = Docker Compose Examples\Linux - Alpine 2\docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +58,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{89B82E51-DCDA-4587-921A-9B6DA2169926} = {4D4CD46C-319A-47FB-AE2A-113B194AA15C}
+		{88688E5D-6C62-4B3B-BE82-F958F56271E9} = {4D4CD46C-319A-47FB-AE2A-113B194AA15C}
+		{4BE666E8-07E3-4B22-99DA-A2F24A02EA19} = {4D4CD46C-319A-47FB-AE2A-113B194AA15C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EFD20BD3-6DD3-4AC5-AAFE-E33F89A4653A}

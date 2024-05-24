@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  wiremock:
+    image: sheyenrath/wiremock.net-alpine
+    ports:
+       - "9091:80"
+    volumes:
+      - ./wiremock/mappings:/app/__admin/mappings
+    command: ["dotnet", "wiremock-net.dll", "--Urls", "http://*:80", "--ReadStaticMappings", "true", "--WireMockLogger", "WireMockConsoleLogger"]
