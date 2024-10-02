@@ -1,4 +1,4 @@
-# 1.6.6 (24 December 2022)
+# 1.6.7-preview-01 (24 December 2022)
 - [#33](https://github.com/WireMock-Net/WireMock.Net-docker/pull/33) - Fixed images for nanoserver and updated images for windows-2019 contributed by [StefH](https://github.com/StefH)
 - [#38](https://github.com/WireMock-Net/WireMock.Net-docker/pull/38) - Add ARM (32 &amp; 64) [feature] contributed by [StefH](https://github.com/StefH)
 - [#32](https://github.com/WireMock-Net/WireMock.Net-docker/issues/32) - Wrong Nanoserver Base Image [bug]
