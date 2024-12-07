@@ -17,7 +17,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
 ENV ASPNETCORE_HTTP_PORTS=80
 
 # resolve CVE-2023-5363 and CVE-2023-5678
-RUN apk upgrade libssl3 libcrypto3 --no-cache
+# RUN apk upgrade libssl3 libcrypto3 --no-cache
 WORKDIR /app
 COPY --from=build-env /app/out ./
 EXPOSE 80
