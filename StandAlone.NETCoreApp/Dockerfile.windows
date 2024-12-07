@@ -18,8 +18,7 @@ ENV ASPNETCORE_HTTP_PORTS=80
 WORKDIR /app
 COPY --from=build-env /app/out ./
 EXPOSE 80
-ENTRYPOINT ["dotnet", "wiremock-net.dll", "--Urls", "http://*:80"]
-CMD ["--WireMockLogger", "WireMockConsoleLogger"]
+ENTRYPOINT ["dotnet", "wiremock-net.dll", "--Urls", "http://*:80", "--WireMockLogger", "WireMockConsoleLogger"]
 
 # Just some info to build and run:
 # build with : docker build -t sheyenrath/wiremock.net-windows -f Dockerfile.windows .
