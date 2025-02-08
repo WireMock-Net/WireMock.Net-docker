@@ -1,0 +1,31 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build-env
+
+LABEL maintainer="Stef Heyenrath"
+
+WORKDIR /app
+
+# Copy the NuGetForDocker folder with the nupkg files and the nuget.config file to the container
+COPY ./nuget.config.Docker ./nuget.config
+COPY ./NuGetForDocker/*.nupkg ./NuGetForDocker/
+
+# copy csproj and restore as distinct layers
+COPY StandAlone.NETCoreApp.Local.csproj ./
+RUN dotnet restore
+
+# copy everything else and build
+COPY *.cs ./
+RUN dotnet publish -c Release -o out
+
+# build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
+ENV ASPNETCORE_HTTP_PORTS=80
+
+WORKDIR /app
+COPY --from=build-env /app/out ./
+EXPOSE 80
+ENTRYPOINT ["./wiremock-net", "--Urls", "http://*:80"]
+CMD ["--WireMockLogger", "WireMockConsoleLogger"]
+
+# Just some info:
+# build with : docker build -t sheyenrath/wiremock.net-alpine -f Dockerfile.alpine .
+# run with   : docker run --rm -p 9091:80 sheyenrath/wiremock.net-alpine

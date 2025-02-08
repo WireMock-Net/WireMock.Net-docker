@@ -7,13 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandAlone.NETCoreApp", "St
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AC62511-0096-4DE2-A53D-A899F8F5FD4A}"
 	ProjectSection(SolutionItems) = preProject
+		..\.dockerignore = ..\.dockerignore
 		azure-pipelines-alpine.yml = azure-pipelines-alpine.yml
 		azure-pipelines-arm.yml = azure-pipelines-arm.yml
 		azure-pipelines-windows-2019.yml = azure-pipelines-windows-2019.yml
 		azure-pipelines-windows.yml = azure-pipelines-windows.yml
 		azure-pipelines.nano.yml = azure-pipelines.nano.yml
 		azure-pipelines.yml = azure-pipelines.yml
+		..\create.ps1 = ..\create.ps1
 		StandAlone.NETCoreApp\docker-compose.yml = StandAlone.NETCoreApp\docker-compose.yml
+		..\Dockerfile = ..\Dockerfile
 		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
 		README.md = README.md
 		ReleaseNotes.md = ReleaseNotes.md
@@ -45,6 +48,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linux - Alpine 2", "Linux -
 		Docker Compose Examples\Linux - Alpine 2\docker-compose.yml = Docker Compose Examples\Linux - Alpine 2\docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandAlone.NETCoreApp.Local", "StandAlone.NETCoreApp.Local\StandAlone.NETCoreApp.Local.csproj", "{E021E024-A15A-482F-BBDF-E6162278C33C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local", "Local", "{C95DBFB9-CB28-4760-A200-9DD02A823BF1}"
+	ProjectSection(SolutionItems) = preProject
+		..\.dockerignore = ..\.dockerignore
+		..\create.alpine.ps1 = ..\create.alpine.ps1
+		..\create.ps1 = ..\create.ps1
+		..\Dockerfile = ..\Dockerfile
+		..\Dockerfile.alpine = ..\Dockerfile.alpine
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +69,10 @@ Global
 		{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{053EA9FA-E42A-4E57-9EC5-7F0F2D6E4014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E021E024-A15A-482F-BBDF-E6162278C33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E021E024-A15A-482F-BBDF-E6162278C33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E021E024-A15A-482F-BBDF-E6162278C33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E021E024-A15A-482F-BBDF-E6162278C33C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

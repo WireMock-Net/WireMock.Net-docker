@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+
+LABEL maintainer="Stef Heyenrath"
+
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY StandAlone.NETCoreApp.csproj ./
+RUN dotnet restore
+
+# copy everything else and build
+COPY *.cs ./
+RUN dotnet publish -c Release -o out
+
+# build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build-env /app/out ./
+EXPOSE 80
+ENTRYPOINT ["dotnet", "wiremock-net.dll", "--Urls", "http://*:80"]
+CMD ["--WireMockLogger", "WireMockConsoleLogger"]
+
+# Just some info to build and run:
+# build with : docker build -t sheyenrath/wiremock.net-nanoserver-2022 -f Dockerfile.nanoserver-2022 .
+# run with   : docker run --rm -i -p 9090:80 sheyenrath/wiremock.net-nanoserver-2022 --AdminUsername a --AdminPassword b
